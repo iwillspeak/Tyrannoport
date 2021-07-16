@@ -10,4 +10,8 @@
   <ItemGroup>
     <EmbeddedResource Include="templates/*.liquid" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotLiquid" Version="2.1.488" />
+  </ItemGroup>
 </Project>

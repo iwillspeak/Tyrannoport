@@ -9,11 +9,11 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Tryanoport/bin/Debug/net5.0/Tryanoport.dll",
+            "program": "${workspaceFolder}/src/Tyranoport/bin/Debug/net5.0/Tyranoport.dll",
             "args": [
                 "${workspaceFolder}/fixture_data/SimpleExample.trx"
             ],
-            "cwd": "${workspaceFolder}/src/Tryanoport",
+            "cwd": "${workspaceFolder}/src/Tyranoport",
             "console": "internalConsole",
             "stopAtEntry": false
         },
