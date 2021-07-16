@@ -7,9 +7,10 @@ using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
+#nullable disable
 #pragma warning disable CS1591
 
-namespace Xml2CSharp
+namespace Tyranoport.Trx.Models
 {
 	[XmlRoot(ElementName="Times", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 	public class Times {
