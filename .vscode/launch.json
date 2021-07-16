@@ -11,7 +11,7 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/Tryanoport/bin/Debug/net5.0/Tryanoport.dll",
             "args": [
-                "${workspaceFolder}/test/Tyranoport.Tests/TestResults/_fedora_2021-07-15_18_47_19.trx"
+                "${workspaceFolder}/fixture_data/SimpleExample.trx"
             ],
             "cwd": "${workspaceFolder}/src/Tryanoport",
             "console": "internalConsole",
