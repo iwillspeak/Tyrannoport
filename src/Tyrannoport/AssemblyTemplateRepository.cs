@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DotLiquid;
 
-namespace Tyranoport
+namespace Tyrannoport
 {
     internal class AssemblyTemplateRepository : ITemplateRepository
     {

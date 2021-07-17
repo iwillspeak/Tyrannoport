@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using DotLiquid;
 
-namespace Tyranoport
+namespace Tyrannoport
 {
     /// <summary>Interface for loading parsed DotLiquid templates</summary>
     public interface ITemplateRepository

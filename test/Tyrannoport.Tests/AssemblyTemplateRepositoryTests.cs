@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Tyranoport.Tests
+namespace Tyrannoport.Tests
 {
     public sealed class AssemblyTemplateRepositoryTests
     {

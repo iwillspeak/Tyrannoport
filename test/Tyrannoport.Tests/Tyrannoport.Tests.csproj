@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Tyranoport\Tyranoport.csproj" />
+    <ProjectReference Include="..\..\src\Tyrannoport\Tyrannoport.csproj" />
   </ItemGroup>
 
   <ItemGroup>

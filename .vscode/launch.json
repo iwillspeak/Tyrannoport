@@ -9,11 +9,11 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Tyranoport/bin/Debug/net5.0/Tyranoport.dll",
+            "program": "${workspaceFolder}/src/Tyrannoport/bin/Debug/net5.0/Tyrannoport.dll",
             "args": [
-                "${workspaceFolder}/test/Tyranoport.Tests/fixture_data/FailsAndSkipped.trx"
+                "${workspaceFolder}/test/Tyrannoport.Tests/fixture_data/FailsAndSkipped.trx"
             ],
-            "cwd": "${workspaceFolder}/src/Tyranoport",
+            "cwd": "${workspaceFolder}/src/Tyrannoport",
             "console": "internalConsole",
             "stopAtEntry": false
         },

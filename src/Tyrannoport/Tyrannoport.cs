@@ -5,20 +5,20 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DotLiquid;
-using Tyranoport.Trx;
-using Tyranoport.Trx.Models;
+using Tyrannoport.Trx;
+using Tyrannoport.Trx.Models;
 
-namespace Tyranoport
+namespace Tyrannoport
 {
     /// <summary>
-    ///   Tyranoport Workspace
+    ///   Tyrannoport Workspace
     ///   <para>
     ///     This is the main entry point to report rendering. It is responsible
     ///     for holding the loaded TRX data, and traversing it to render the
     ///     report.
     ///   </para>
     /// </summary>
-    public sealed class Tyranoport
+    public sealed class Tyrannoport
     {
         private readonly IReadOnlyDictionary<string, TestRun> _runs;
         private readonly ITemplateRepository _templateRepository;
@@ -27,7 +27,7 @@ namespace Tyranoport
         /// <param name="paths">
         ///  The paths to one or more TRX files to generate the report from.
         /// </param>
-        public Tyranoport(IEnumerable<string> paths)
+        public Tyrannoport(IEnumerable<string> paths)
             : this(new AssemblyTemplateRepository(), paths)
         {
         }
@@ -39,7 +39,7 @@ namespace Tyranoport
         /// <param name="templateRepository">
         ///   The repository to use for loading templates.
         /// </param> 
-        public Tyranoport(ITemplateRepository templateRepository, IEnumerable<string> paths)
+        public Tyrannoport(ITemplateRepository templateRepository, IEnumerable<string> paths)
         {
             _runs = paths.Any() ?
                 paths.ToDictionary(p => p, TrxReader.LoadPath) :

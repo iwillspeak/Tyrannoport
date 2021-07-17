@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Tyranoport.Trx;
+using Tyrannoport.Trx;
 using Xunit;
 
-namespace Tyranoport.Tests
+namespace Tyrannoport.Tests
 {
     public class TrxReaderTests
     {

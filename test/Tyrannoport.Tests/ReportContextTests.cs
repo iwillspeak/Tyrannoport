@@ -1,8 +1,8 @@
 using System;
-using Tyranoport.Trx.Models;
+using Tyrannoport.Trx.Models;
 using Xunit;
 
-namespace Tyranoport.Tests
+namespace Tyrannoport.Tests
 {
     public sealed class ReportContextTests
     {

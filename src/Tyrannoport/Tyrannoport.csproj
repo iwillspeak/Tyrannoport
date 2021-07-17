@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <PackAsTool>True</PackAsTool>
-    <ToolCommandName>tyranoport</ToolCommandName>
+    <ToolCommandName>Tyrannoport</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>

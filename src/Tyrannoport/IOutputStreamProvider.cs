@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Tyranoport
+namespace Tyrannoport
 {
     /// <summary>
     ///   Ouput Provider

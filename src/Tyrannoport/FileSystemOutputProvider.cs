@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Tyranoport
+namespace Tyrannoport
 {
     /// <summary>An output provider that writes to the file system</summary>
     internal sealed class FileSystemOutputProvider : IOutputStreamProvider

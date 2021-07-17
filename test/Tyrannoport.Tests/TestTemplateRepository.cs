@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using DotLiquid;
 
-namespace Tyranoport.Tests
+namespace Tyrannoport.Tests
 {
     internal sealed class TestTemplateRepository : ITemplateRepository
     {

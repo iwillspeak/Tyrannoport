@@ -1,9 +1,9 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using Tyranoport.Trx.Models;
+using Tyrannoport.Trx.Models;
 
-namespace Tyranoport.Trx
+namespace Tyrannoport.Trx
 {
     /// <summary>Trx Reader utilities</summary>
     public static class TrxReader

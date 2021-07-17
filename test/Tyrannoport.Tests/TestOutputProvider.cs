@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Tyranoport.Tests
+namespace Tyrannoport.Tests
 {
     internal sealed class TestOutputProvider : IOutputStreamProvider
     {

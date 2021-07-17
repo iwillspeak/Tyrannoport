@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using DotLiquid;
-using Tyranoport.Trx.Models;
+using Tyrannoport.Trx.Models;
 
-namespace Tyranoport.Models
+namespace Tyrannoport.Models
 {
     internal class RunSummary : Drop
     {

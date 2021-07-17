@@ -10,7 +10,7 @@ using System.Collections.Generic;
 #nullable disable
 #pragma warning disable CS1591
 
-namespace Tyranoport.Trx.Models
+namespace Tyrannoport.Trx.Models
 {
 	[XmlRoot(ElementName="Times", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 	public class Times {

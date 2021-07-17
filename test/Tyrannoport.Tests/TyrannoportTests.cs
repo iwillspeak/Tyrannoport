@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using DotLiquid;
 using Xunit;
 
-namespace Tyranoport.Tests
+namespace Tyrannoport.Tests
 {
-    public sealed class TyranoportTests
+    public sealed class TyrannoportTests
     {
         [Fact]
         public void ReportWithoutTestsThrows()
@@ -15,7 +15,7 @@ namespace Tyranoport.Tests
         // When
             var argException = Assert.ThrowsAny<ArgumentException>(() =>
             {
-                new Tyranoport(Enumerable.Empty<string>());
+                new Tyrannoport(Enumerable.Empty<string>());
             });
 
         // Then
@@ -28,7 +28,7 @@ namespace Tyranoport.Tests
         //When
             var ex = Assert.ThrowsAny<FileNotFoundException>(() =>
             {
-                new Tyranoport(new [] { 
+                new Tyrannoport(new [] { 
                     "invalid_path.trx"
                 });
             });
@@ -42,7 +42,7 @@ namespace Tyranoport.Tests
         public async Task TestRender()
         {
         //Given
-            var report = new Tyranoport(
+            var report = new Tyrannoport(
                 new TestTemplateRepository
                 {
                     ["overview"] = Template.Parse("{{ summary.pass_percentage | round: 2 }}%")

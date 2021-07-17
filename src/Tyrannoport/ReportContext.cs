@@ -1,7 +1,7 @@
-using Tyranoport.Models;
-using Tyranoport.Trx.Models;
+using Tyrannoport.Models;
+using Tyrannoport.Trx.Models;
 
-namespace Tyranoport
+namespace Tyrannoport
 {
     /// <summary>
     ///   Wrapper around a Trx <see cref="Trx.Models.TestRun" /> to provide

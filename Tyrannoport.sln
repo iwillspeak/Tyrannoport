@@ -5,11 +5,11 @@ VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8DF494F3-30D6-48E0-9DA0-D14552AB4F24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyranoport", "src\Tyranoport\Tyranoport.csproj", "{8C3C9CD6-2D9A-46CD-A646-60A88761DE37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyrannoport", "src\Tyrannoport\Tyrannoport.csproj", "{8C3C9CD6-2D9A-46CD-A646-60A88761DE37}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2C7CF283-3103-4EB3-A05F-F69C61DF1DC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyranoport.Tests", "test\Tyranoport.Tests\Tyranoport.Tests.csproj", "{26FE8B26-6A87-4D01-8EAE-8D7EBEF16D79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyrannoport.Tests", "test\Tyrannoport.Tests\Tyrannoport.Tests.csproj", "{26FE8B26-6A87-4D01-8EAE-8D7EBEF16D79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
