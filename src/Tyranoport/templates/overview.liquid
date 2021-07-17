@@ -45,12 +45,13 @@
                             Timings
                             </h2>
                         </div>
-                        <ul class="Box-body">
-                            <li><strong>Creation</strong>: 2021-07-15T18:47:19.5612408+01:00</li>
-                            <li><strong>Queuing</strong>: 2021-07-15T18:47:19.5612409+01:00</li>
-                            <li><strong>Start</strong>: 2021-07-15T18:47:18.5970852+01:00</li>
-                            <li><strong>Finish</strong>: 2021-07-15T18:47:19.5688108+01:00</li>
-                        </ul>
+                        <div class="Box-body">
+                            <p><strong>Creation</strong>: {{ timings.creation }}</p>
+                            <p><strong>Queuing</strong>: {{ timings.queuing }}</p>
+                            <p><strong>Start</strong>: {{ timings.start }}</p>
+                            <p><strong>Finish</strong>: {{ timings.finish }}</p>
+                            <p><strong>Duration</strong>: {{ timings.Duration }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
