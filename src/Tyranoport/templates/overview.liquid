@@ -24,15 +24,24 @@
                             </h2>
                         </div>
                         <div class="Box-body">
-                            <p class="color-text-success m2">1 passed</p>
-                            <p class="color-text-warning">2 skipped</p>
-                            <p class="color-text-danger">1 failed</p>
+                            <div class="d-flex flex-justify-between">
+                                <div>
+                                    <p class="color-text-success m2">{{ summary.passed }} passed</p>
+                                    <p class="color-text-danger">{{ summary.failed}} failed</p>
+                                    <p class="color-text-warning">{{ summary.skipped }} skipped</p>
+                                    <p class="color-text-info">{{ summary.other}} other</p>
+                                </div>
+                                <div>
+                                    <p style="font-size: 2em">{{ summary.total_tests }} tests</p>
+                                    <p style="font-size: 3em">{{ summary.pass_percentage | round: 2 }}% passed</p>
+                                </div>
+                            </div>
                             <div>
                                 <span class="Progress">
-                                    <span class="Progress-item color-bg-success-inverse" style="width: 50%;"></span>
-                                    <span class="Progress-item color-bg-warning-inverse" style="width: 25%;"></span>
-                                    <span class="Progress-item color-bg-danger-inverse" style="width: 15%;"></span>
-                                    <span class="Progress-item color-bg-info-inverse" style="width: 10%;"></span>
+                                    <span class="Progress-item color-bg-success-inverse" style="width: {{ summary.pass_percentage }}%;"></span>
+                                    <span class="Progress-item color-bg-danger-inverse" style="width: {{ summary.failed_percentage }}%;"></span>
+                                    {% if summary.skipped_percentage > 0 %}<span class="Progress-item color-bg-warning-inverse" style="width: {{ summary.skipped_percentage }}%;"></span>{% endif -%}
+                                    {% if summary.other_percentage > 0 %}<span class="Progress-item color-bg-info-inverse" style="width: {{ summary.other_percentage }}%;"></span>{% endif -%}
                                 </span>
                             </div>
                         </div>
@@ -55,8 +64,8 @@
                     </div>
                 </div>
             </div>
-            <div class="p-2 mt-3">
-                <h2>Test Classes</h2>
+            <div class="Subhead Subhead--spacious">
+                <h2 class="Subhead-heading">Test Classes</h2>
             </div>
         </section>
     </body>

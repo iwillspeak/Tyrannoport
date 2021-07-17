@@ -62,7 +62,7 @@ namespace Tyranoport
             // TODO: we should have the option to change the output location
             //       from the CLI.
             var overviewPath = Path.ChangeExtension(path, "html");
-            using var output = File.OpenWrite(overviewPath);
+            using var output = File.Open(overviewPath, FileMode.OpenOrCreate | FileMode.Truncate);
 
             var template = await _templateRepository.LoadAsync("overview");
 
@@ -70,6 +70,7 @@ namespace Tyranoport
             {
                 LocalVariables = Hash.FromAnonymousObject(new {
                     Timings = report.Timings,
+                    Summary = report.Summary,
                 }),
             });
         }

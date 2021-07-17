@@ -2,7 +2,7 @@ using System;
 using DotLiquid;
 using Tyranoport.Trx.Models;
 
-namespace Tyranoport
+namespace Tyranoport.Models
 {
     internal class ReportTimings : Drop
     {

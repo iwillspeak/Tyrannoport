@@ -161,37 +161,37 @@ namespace Tyranoport.Trx.Models
 	[XmlRoot(ElementName="Counters", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 	public class Counters {
 		[XmlAttribute(AttributeName="total")]
-		public string Total { get; set; }
+		public int Total { get; set; }
 		[XmlAttribute(AttributeName="executed")]
-		public string Executed { get; set; }
+		public int Executed { get; set; }
 		[XmlAttribute(AttributeName="passed")]
-		public string Passed { get; set; }
+		public int Passed { get; set; }
 		[XmlAttribute(AttributeName="failed")]
-		public string Failed { get; set; }
+		public int Failed { get; set; }
 		[XmlAttribute(AttributeName="error")]
-		public string Error { get; set; }
+		public int Error { get; set; }
 		[XmlAttribute(AttributeName="timeout")]
-		public string Timeout { get; set; }
+		public int Timeout { get; set; }
 		[XmlAttribute(AttributeName="aborted")]
-		public string Aborted { get; set; }
+		public int Aborted { get; set; }
 		[XmlAttribute(AttributeName="inconclusive")]
-		public string Inconclusive { get; set; }
+		public int Inconclusive { get; set; }
 		[XmlAttribute(AttributeName="passedButRunAborted")]
-		public string PassedButRunAborted { get; set; }
+		public int PassedButRunAborted { get; set; }
 		[XmlAttribute(AttributeName="notRunnable")]
-		public string NotRunnable { get; set; }
+		public int NotRunnable { get; set; }
 		[XmlAttribute(AttributeName="notExecuted")]
-		public string NotExecuted { get; set; }
+		public int NotExecuted { get; set; }
 		[XmlAttribute(AttributeName="disconnected")]
-		public string Disconnected { get; set; }
+		public int Disconnected { get; set; }
 		[XmlAttribute(AttributeName="warning")]
-		public string Warning { get; set; }
+		public int Warning { get; set; }
 		[XmlAttribute(AttributeName="completed")]
-		public string Completed { get; set; }
+		public int Completed { get; set; }
 		[XmlAttribute(AttributeName="inProgress")]
-		public string InProgress { get; set; }
+		public int InProgress { get; set; }
 		[XmlAttribute(AttributeName="pending")]
-		public string Pending { get; set; }
+		public int Pending { get; set; }
 	}
 
 	[XmlRoot(ElementName="RunInfo", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
