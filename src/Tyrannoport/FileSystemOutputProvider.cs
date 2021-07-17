@@ -6,7 +6,11 @@ namespace Tyrannoport
     internal sealed class FileSystemOutputProvider : IOutputStreamProvider
     {
         /// <inheritdoc />
-        public Stream OpenPath(string path) =>
-            File.Open(path, FileMode.OpenOrCreate | FileMode.Truncate);
+        public Stream OpenPath(string path)
+        {
+            var fs = File.OpenWrite(path);
+            fs.SetLength(0);
+            return fs;
+        }
     }
 }
