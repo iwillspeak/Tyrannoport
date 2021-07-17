@@ -47,22 +47,30 @@ namespace Tyranoport
             _templateRepository = templateRepository;
         }
 
-        /// <summary>Render the report to chosen output path</summary>
-        public async Task RenderAsync()
+        /// <summary>Render the report the filesystem output.</summary>
+        public Task RenderAsync() =>
+            RenderAsync(new FileSystemOutputProvider());
+
+        /// <summary>Render the report to chosen output</summary>
+        /// <param name="outputProvider">The output provider to render to</param>
+        public async Task RenderAsync(IOutputStreamProvider outputProvider)
         {
             foreach (var (path, run) in _runs)
             {
                 var context = new ReportContext(run);
-                await RenderRunAsync(path, context);
+                await RenderOverviewAsync(path, context, outputProvider);
             }
         }
 
-        private async Task RenderRunAsync(string path, ReportContext report)
+        private async Task RenderOverviewAsync(
+            string path,
+            ReportContext report,
+            IOutputStreamProvider outputProvider)
         {
             // TODO: we should have the option to change the output location
             //       from the CLI.
             var overviewPath = Path.ChangeExtension(path, "html");
-            using var output = File.Open(overviewPath, FileMode.OpenOrCreate | FileMode.Truncate);
+            using var output = outputProvider.OpenPath(overviewPath);
 
             var template = await _templateRepository.LoadAsync("overview");
 
