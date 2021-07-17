@@ -17,6 +17,6 @@ versionFlags="/P:Version=${OCTOVERSION_NuGetVersion} /P:InformationalVersion=${O
 
 ## Run the Build
 dotnet build --configuration Release $versionFlags
-dotnet test --no-build --configuration Release $versionFlags --logger 'trx' --logger 'console;verbosity=normal'
+dotnet test --no-build --configuration Release $versionFlags --collect:"XPlat Code Coverage" --logger 'trx' --logger 'console;verbosity=normal'
 dotnet pack -o PublishOutput --configuration Release $versionFlags
 

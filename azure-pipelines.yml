@@ -26,7 +26,9 @@ stages:
       inputs:
         testResultsFormat: 'VSTest'
         testResultsFiles: '**/TestResults/*.trx'
-
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        summaryFileLocation: '**/TestResults/**/coverage.cobertura.xml'
 - stage: Deploy
   jobs:
   - deployment: NuGetDeploy
