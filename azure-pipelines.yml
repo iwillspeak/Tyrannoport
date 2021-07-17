@@ -3,8 +3,8 @@ variables:
 
 trigger:
   branches:
-    include:
-    - main
+    exclude:
+    - noci/*
   tags:
     include:
     - v*
