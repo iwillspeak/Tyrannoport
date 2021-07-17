@@ -446,6 +446,3 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
-### Fixture output
-fixture_data/*.html

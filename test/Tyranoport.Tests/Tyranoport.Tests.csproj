@@ -19,4 +19,12 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Tyranoport\Tyranoport.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="fixture_data/*.trx" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
