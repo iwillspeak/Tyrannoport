@@ -26,8 +26,6 @@
                 "test",
                 "--logger=trx",
                 "--logger=console;verbosity=info;noprogress=true",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
             ],
             "group": {
                 "kind": "test",

@@ -24,6 +24,18 @@ namespace Tyranoport
         ///  The paths to one or more TRX files to generate the report from.
         /// </param>
         public Tyranoport(IEnumerable<string> paths)
+            : this(new AssemblyTemplateRepository(), paths)
+        {
+        }
+
+        /// <summary>Create a new Tyranport for the given paths with custom resolvers.</summary>
+        /// <param name="paths">
+        ///   The paths to one or more TRX files to generate the report from.
+        /// </param>
+        /// <param name="templateRepository">
+        ///   The repository to use for loading templates.
+        /// </param> 
+        public Tyranoport(ITemplateRepository templateRepository, IEnumerable<string> paths)
         {
             _reports = paths.Any() ?
                 paths.Select(TrxReader.LoadPath).ToArray() :
@@ -33,8 +45,6 @@ namespace Tyranoport
         /// <summary>Render the report to chosen output path</summary>
         public Task RenderAsync()
         {
-            // using var templateStream = new StreamReader(typeof(Program).Assembly.GetManifestResourceStream("Tyranoport.templates.index.liquid")!);
-            // var template = Template.Parse(await templateStream.ReadToEndAsync());
             // using var output = File.OpenWrite(outputPath);
 
             // template.Render(output, new RenderParameters(CultureInfo.InvariantCulture)
