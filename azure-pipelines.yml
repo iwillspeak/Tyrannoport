@@ -37,6 +37,7 @@ stages:
     pool:
       vmImage: 'Ubuntu-latest'
     environment: 'live-nuget'
+    continueOnError: true
     strategy:
       runOnce:
         deploy:
