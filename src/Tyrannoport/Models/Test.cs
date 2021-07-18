@@ -27,6 +27,18 @@ namespace Tyrannoport.Models
 
         public string ClassName => _test.TestMethod.ClassName;
 
+        public string ComputerName => _result.ComputerName;
+
+        public DateTimeOffset Start => DateTimeOffset.Parse(_result.StartTime);
+
+        public DateTimeOffset End => DateTimeOffset.Parse(_result.EndTime);
+
+        public string TestType => _result.TestType;
+
+        public string Adapter => _test.TestMethod.AdapterTypeName;
+
+        public string CodeBase => _test.TestMethod.CodeBase;
+
         public TimeSpan Duration => TimeSpan.Parse(_result.Duration);
 
         public string Outcome => _result.Outcome;
