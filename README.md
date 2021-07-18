@@ -7,9 +7,14 @@
 TODO: 
 
  * [x] Parse raw TRX data
- * [ ] Command line argument parsing
  * [x] Templating of overview page from parsed report
  * [x] Templating of test results pages from parsed report
+ * [ ] Command line argument parsing (`--output` etc.)
  * [ ] Document usage in README
  * [ ] Bake in CSS rather than referencing unpkg
+ * [ ] Nuke and Cake plugins / docs
+ * [ ] Support more target frameworks (`netcoreapp3.1` might be nice)
+ * [ ] Fixup navigation + breadcrumbs.
+ * [ ] JS to allow switching to dark mode
+ * [ ] JS to allow filtering by outcome
  * [ ] Add `tyrannoport summarise` command to generate an overview page?
