@@ -7,7 +7,7 @@ trigger:
     - noci/*
   tags:
     include:
-    - v*
+    - '*'
 
 stages:
 
