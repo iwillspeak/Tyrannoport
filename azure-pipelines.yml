@@ -28,6 +28,7 @@ stages:
         testResultsFiles: '**/TestResults/*.trx'
     - task: PublishCodeCoverageResults@1
       inputs:
+        codeCoverageTool: Cobertura
         summaryFileLocation: '**/TestResults/**/coverage.cobertura.xml'
 - stage: Deploy
   jobs:

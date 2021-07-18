@@ -20,3 +20,5 @@ dotnet build --configuration Release $versionFlags
 dotnet test --no-build --configuration Release $versionFlags --collect:"XPlat Code Coverage" --logger 'trx' --logger 'console;verbosity=normal'
 dotnet pack -o PublishOutput --configuration Release $versionFlags
 
+## Pack up the code coverage results
+dotnet reportgenerator -reports:**/TestResults/**/coverage.cobertura.xml -targetdir:CoverageReport  -reporttypes:HtmlInline_AzurePipelines

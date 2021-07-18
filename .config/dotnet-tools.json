@@ -7,6 +7,12 @@
       "commands": [
         "octoversion"
       ]
+    },
+    "dotnet-reportgenerator-globaltool": {
+      "version": "4.8.12",
+      "commands": [
+        "reportgenerator"
+      ]
     }
   }
 }
