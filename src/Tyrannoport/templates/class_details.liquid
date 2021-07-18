@@ -8,7 +8,7 @@
         <div class="Box-header d-flex flex-items-center">
             <span class="Box-title flex-auto mr-3">Test</span>
             <span class="Box-title mr-3">Duration</span>
-            <span class="Box-title">Outcome</span>
+            <span class="Box-title col-2 col-md-1 text-right">Outcome</span>
         </div>
             <ul>
             {% for t in tests %}
@@ -20,15 +20,17 @@
                             <span class="d-block text-small color-text-tertiary">{{ t.name }}</span>
                         </div>
                         <div class="mr-3">{{ t.duration }}</div>
-                        <div class="Label {% case t.outcome %}
-                                        {% when "Passed" %}
-                                            Label--success
-                                        {% when "Failed" %}
-                                            Label--danger
-                                        {% when "NotExecuted" %}
-                                            Label--warning
-                                    {% endcase %}">
+                        <div class="col-2 col-md-1 text-right">
+                            <span class="Label {% case t.outcome -%}
+                                            {% when "Passed" -%}
+                                                Label--success
+                                            {% when "Failed" -%}
+                                                Label--danger
+                                            {% when "NotExecuted" -%}
+                                                Label--warning
+                                        {% endcase -%}">
                             {{ t.outcome }}
+                            </span>
                         </div>
                     </summary>
                     <div class="mt-2 d-flex flex-wrap">
