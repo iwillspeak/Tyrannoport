@@ -18,6 +18,7 @@ namespace Tyrannoport
         {
             Timings = new ReportTimings(testRun.Times);
             Summary = new RunSummary(testRun.ResultSummary);
+            Title = testRun.Name ?? "Unit Tests";
 
             _executions = testRun.Results?.UnitTestResult?.ToDictionary(x => x.ExecutionId) ??
                 new Dictionary<string, UnitTestResult>();
@@ -27,6 +28,8 @@ namespace Tyrannoport
         public ReportTimings Timings { get; }
 
         public RunSummary Summary { get; }
+
+        public string Title { get; }
 
         public IEnumerable<TestGrouping> TestGroups => _testsByClass
             ?.Select(g => new TestGrouping(g.Key, g.Select(t => new Test(t, _executions[t.Execution.Id])))) ??

@@ -1,10 +1,13 @@
 {% extends "layout" %}
 {% block content %}
 <section class="p-2">
-    <div class="Subhead Subhead--spacious">
-        <h2 class="Subhead-heading">{{ class }}</h2>
-    </div>
-    <div class="Box">
+    <nav aria-label="Breadcrumb mt-4">
+        <ol>
+            <li class="breadcrumb-item"><a href="{{ navs.overview_slug }}">{{ navs.title }}</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{ class }}</li>
+        </ol>
+    </nav>
+    <div class="Box mt-3">
         <div class="Box-header d-flex flex-items-center">
             <span class="Box-title flex-auto mr-3">Test</span>
             <span class="Box-title mr-3">Duration</span>
