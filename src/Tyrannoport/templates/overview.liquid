@@ -62,7 +62,7 @@
             <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
                 <div class="flex-auto mr-3"><a href="{{t.slug}}">{{ t.key }}</a></div>
                 <div class="col-2 col-md-1 mr-3">{{ t.tests.size }}</div>
-                <div class="col-2 col-md-1 mr-3">{{ t.summary.pass_percentage }}%</div>
+                <div class="col-2 col-md-1 mr-3">{{ t.summary.pass_percentage | round: 2 }}%</div>
                 <div class="col-2 col-md-1 text-right">
                     <span class="Label {% case t.summary.overall_outcome -%}
                                     {% when "Passed" -%}

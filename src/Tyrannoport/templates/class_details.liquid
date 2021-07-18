@@ -43,7 +43,7 @@
                     {% if t.error -%}
                     <details class="details-reset mt-2">
                         <summary class="color-text-danger d-flex flex-items-center">
-                            <pre class="flex-auto mr-3"><code>{{ t.error.message }}</code></pre>
+                            <pre class="flex-auto overflow-x-auto mr-3"><code>{{ t.error.message }}</code></pre>
                             <span class="btn-link">Stack trace <span class="dropdown-caret"></span></span>
                         </summary>
                         <pre class="overflow-x-auto mt-1 p-3" data-color-mode="dark" data-dark-theme="dark"><code>{{ t.error.stack_trace }}</code></pre>
