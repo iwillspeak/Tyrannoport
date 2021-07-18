@@ -1,0 +1,4 @@
+{
+    "NonPreReleaseTags": [ "main", "refs/heads/main" ],
+    "NonPreReleaseTagsRegex": "^refs/tags/\\d+.\\d.+\\d+$"
+}
