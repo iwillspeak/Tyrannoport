@@ -13,5 +13,15 @@ namespace Tyrannoport.Models
             _test = test;
             _result = unitTestResult;
         }
+
+        public string Slug => _test.Id;
+
+        public string Name => _test.Name;
+
+        public string MethodName => _test.TestMethod.Name;
+
+        public string ClassName => _test.TestMethod.ClassName;
+
+        public string Outcome => _result.Outcome;
     }
 }

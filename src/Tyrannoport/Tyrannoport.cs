@@ -70,18 +70,33 @@ namespace Tyrannoport
             // TODO: we should have the option to change the output location
             //       from the CLI.
             var overviewPath = Path.ChangeExtension(path, "html");
-            using var output = outputProvider.OpenPath(overviewPath);
 
-            var template = await _templateRepository.LoadAsync("overview");
-
-            template.Render(output, new RenderParameters(CultureInfo.InvariantCulture)
+            using (var output = outputProvider.OpenPath(overviewPath))
             {
-                LocalVariables = Hash.FromAnonymousObject(new {
-                    Timings = report.Timings,
-                    Summary = report.Summary,
-                    Tests = report.TestGroups,
-                }),
-            });
+                var overviewTemplate = await _templateRepository.LoadAsync("overview");
+                overviewTemplate.Render(output, new RenderParameters(CultureInfo.CurrentCulture)
+                {
+                    LocalVariables = Hash.FromAnonymousObject(new {
+                        Timings = report.Timings,
+                        Summary = report.Summary,
+                        Tests = report.TestGroups,
+                    }),
+                });
+            }
+
+            var detailsTemplate = await _templateRepository.LoadAsync("class_details");
+            foreach (var group in report.TestGroups)
+            {
+                using var output = outputProvider.OpenPath(
+                    Path.Join(Path.GetDirectoryName(overviewPath), group.Slug));
+                detailsTemplate.Render(output, new RenderParameters(CultureInfo.CurrentCulture)
+                {
+                    LocalVariables = Hash.FromAnonymousObject(new {
+                        Class = group.Key,
+                        Tests = group.Tests,
+                    }),
+                });
+            }
         }
     }
 }

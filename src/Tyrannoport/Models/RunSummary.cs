@@ -17,7 +17,7 @@ namespace Tyrannoport.Models
 
         public int Passed => _summary.Counters.Passed;
         public int Failed => _summary.Counters.Failed + _summary.Counters.Error;
-        public int Skipped => _summary.Counters.NotExecuted;
+        public int Skipped => _summary.Counters.Total - _summary.Counters.Executed;
         public int Other => _summary.Counters.Aborted + _summary.Counters.Inconclusive + _summary.Counters.NotRunnable + _summary.Counters.Timeout;
 
         public double PassPercentage => ((double)Passed / TotalTests) * 100;

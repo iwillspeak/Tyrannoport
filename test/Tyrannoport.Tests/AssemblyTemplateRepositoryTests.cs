@@ -22,6 +22,7 @@ namespace Tyrannoport.Tests
 
         [Theory]
         [InlineData("overview")]
+        [InlineData("class_details")]
         public async Task LoadKnownTemplatesSucceeds(string name)
         {
         //Given

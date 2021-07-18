@@ -1,0 +1,22 @@
+{% extends "layout" %}
+{% block content %}
+<section class="p-2">
+    <div class="Subhead Subhead--spacious">
+        <h2 class="Subhead-heading">{{ class }}</h2>
+    </div>
+    <div class="Box">
+        <div class="Box-header d-flex flex-items-center">
+            <span class="Box-title flex-auto">Test</span>
+            <span class="Box-title">Outcome</span>
+        </div>
+            <ul>
+            {% for t in tests %}
+            <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
+                <div class="flex-auto mr-3"><a href="#{{t.slug}}">{{ t.method_name }}</a></div>
+                <div>{{ t.outcome }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
