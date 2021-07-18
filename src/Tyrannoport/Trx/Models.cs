@@ -6,6 +6,7 @@
 using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable disable
 #pragma warning disable CS1591
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 namespace Tyrannoport.Trx.Models
 {
 	[XmlRoot(ElementName="Times", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class Times {
 		[XmlAttribute(AttributeName="creation")]
 		public string Creation { get; set; }
@@ -25,12 +27,14 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="Deployment", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class Deployment {
 		[XmlAttribute(AttributeName="runDeploymentRoot")]
 		public string RunDeploymentRoot { get; set; }
 	}
 
 	[XmlRoot(ElementName="TestSettings", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestSettings {
 		[XmlElement(ElementName="Deployment", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public Deployment Deployment { get; set; }
@@ -41,6 +45,7 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="UnitTestResult", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class UnitTestResult {
 		[XmlAttribute(AttributeName="executionId")]
 		public string ExecutionId { get; set; }
@@ -69,6 +74,7 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="ErrorInfo", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class ErrorInfo {
 		[XmlElement(ElementName="Message", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public string Message { get; set; }
@@ -77,6 +83,7 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="Output", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class Output {
 		[XmlElement(ElementName="ErrorInfo", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public ErrorInfo ErrorInfo { get; set; }
@@ -85,18 +92,21 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="Results", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class Results {
 		[XmlElement(ElementName="UnitTestResult", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public List<UnitTestResult> UnitTestResult { get; set; }
 	}
 
 	[XmlRoot(ElementName="Execution", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class Execution {
 		[XmlAttribute(AttributeName="id")]
 		public string Id { get; set; }
 	}
 
 	[XmlRoot(ElementName="TestMethod", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestMethod {
 		[XmlAttribute(AttributeName="codeBase")]
 		public string CodeBase { get; set; }
@@ -109,6 +119,7 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="UnitTest", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class UnitTest {
 		[XmlElement(ElementName="Execution", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public Execution Execution { get; set; }
@@ -123,12 +134,14 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="TestDefinitions", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestDefinitions {
 		[XmlElement(ElementName="UnitTest", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public List<UnitTest> UnitTest { get; set; }
 	}
 
 	[XmlRoot(ElementName="TestEntry", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestEntry {
 		[XmlAttribute(AttributeName="testId")]
 		public string TestId { get; set; }
@@ -139,12 +152,14 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="TestEntries", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestEntries {
 		[XmlElement(ElementName="TestEntry", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public List<TestEntry> TestEntry { get; set; }
 	}
 
 	[XmlRoot(ElementName="TestList", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestList {
 		[XmlAttribute(AttributeName="name")]
 		public string Name { get; set; }
@@ -153,12 +168,14 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="TestLists", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestLists {
 		[XmlElement(ElementName="TestList", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public List<TestList> TestList { get; set; }
 	}
 
 	[XmlRoot(ElementName="Counters", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class Counters {
 		[XmlAttribute(AttributeName="total")]
 		public int Total { get; set; }
@@ -195,6 +212,7 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="RunInfo", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class RunInfo {
 		[XmlElement(ElementName="Text", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public string Text { get; set; }
@@ -207,12 +225,14 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="RunInfos", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class RunInfos {
 		[XmlElement(ElementName="RunInfo", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public RunInfo RunInfo { get; set; }
 	}
 
 	[XmlRoot(ElementName="ResultSummary", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class ResultSummary {
 		[XmlElement(ElementName="Counters", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public Counters Counters { get; set; }
@@ -225,6 +245,7 @@ namespace Tyrannoport.Trx.Models
 	}
 
 	[XmlRoot(ElementName="TestRun", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
+	[ExcludeFromCodeCoverage]
 	public class TestRun {
 		[XmlElement(ElementName="Times", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
 		public Times Times { get; set; }
