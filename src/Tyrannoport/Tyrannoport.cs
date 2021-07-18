@@ -79,6 +79,7 @@ namespace Tyrannoport
                 LocalVariables = Hash.FromAnonymousObject(new {
                     Timings = report.Timings,
                     Summary = report.Summary,
+                    Tests = report.TestGroups,
                 }),
             });
         }
