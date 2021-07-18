@@ -12,22 +12,38 @@
         </div>
             <ul>
             {% for t in tests %}
-            <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
-                <div class="flex-auto mr-3">
-                    <a href="#{{t.slug}}"><strong>{{ t.method_name }}</a></strong>
-                    <span class="d-block text-small color-text-tertiary">{{ t.name }}</span>
-                </div>
-                <div class="mr-3">{{ t.duration }}</div>
-                <div class="Label {% case t.outcome %}
-                                {% when "Passed" %}
-                                    Label--success
-                                {% when "Failed" %}
-                                    Label--danger
-                                {% when "NotExecuted" %}
-                                    Label--warning
-                            {% endcase %}">
-                    {{ t.outcome }}
-                </div>
+            <li class="Box-row Box-row--hover-gray" id="{{t.slug}}">
+                <details>
+                    <summary class="d-flex flex-items-center">
+                        <div class="flex-auto mr-3">
+                            <span class="btn-link">{{ t.method_name }} <span class="dropdown-caret"></span></span>
+                            <span class="d-block text-small color-text-tertiary">{{ t.name }}</span>
+                        </div>
+                        <div class="mr-3">{{ t.duration }}</div>
+                        <div class="Label {% case t.outcome %}
+                                        {% when "Passed" %}
+                                            Label--success
+                                        {% when "Failed" %}
+                                            Label--danger
+                                        {% when "NotExecuted" %}
+                                            Label--warning
+                                    {% endcase %}">
+                            {{ t.outcome }}
+                        </div>
+                    </summary>
+                    {% if t.error -%}
+                    <details class="details-reset mt-2">
+                        <summary class="color-text-danger d-flex flex-items-center">
+                            <pre class="flex-auto mr-3"><code>{{ t.error.message }}</code></pre>
+                            <span class="btn-link">Stack trace <span class="dropdown-caret"></span></span>
+                        </summary>
+                        <pre class="overflow-x-auto mt-1 p-3" data-color-mode="dark" data-dark-theme="dark"><code>{{ t.error.stack_trace }}</code></pre>
+                    </details>
+                    {% endif -%}
+                    {% if t.output -%}
+                    <pre class="p-3 mt-2 overflow-x-auto" data-color-mode="dark" data-dark-theme="dark"><code>{{ t.output }}</code></pre>
+                    {% endif -%}
+                </details>
             </li>
             {% endfor %}
         </ul>

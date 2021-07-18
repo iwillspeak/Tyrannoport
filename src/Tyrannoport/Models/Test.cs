@@ -13,6 +13,10 @@ namespace Tyrannoport.Models
         {
             _test = test;
             _result = unitTestResult;
+            if (_result.Output?.ErrorInfo != null)
+            {
+                Error = new TestError(_result.Output.ErrorInfo);
+            }
         }
 
         public string Slug => _test.Id;
@@ -26,5 +30,9 @@ namespace Tyrannoport.Models
         public TimeSpan Duration => TimeSpan.Parse(_result.Duration);
 
         public string Outcome => _result.Outcome;
+
+        public string? Output => _result.Output?.StdOut;
+
+        public TestError? Error { get; }
     }
 }

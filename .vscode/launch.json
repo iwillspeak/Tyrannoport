@@ -11,7 +11,8 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/Tyrannoport/bin/Debug/net5.0/Tyrannoport.dll",
             "args": [
-                "${workspaceFolder}/test/Tyrannoport.Tests/fixture_data/FailsAndSkipped.trx"
+                "${workspaceFolder}/test/Tyrannoport.Tests/fixture_data/FailsAndSkipped.trx",
+                "${workspaceFolder}/test/Tyrannoport.Tests/fixture_data/SimpleExample.trx"
             ],
             "cwd": "${workspaceFolder}/src/Tyrannoport",
             "console": "internalConsole",
