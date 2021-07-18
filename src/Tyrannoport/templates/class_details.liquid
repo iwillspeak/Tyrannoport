@@ -6,14 +6,28 @@
     </div>
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">
-            <span class="Box-title flex-auto">Test</span>
+            <span class="Box-title flex-auto mr-3">Test</span>
+            <span class="Box-title mr-3">Duration</span>
             <span class="Box-title">Outcome</span>
         </div>
             <ul>
             {% for t in tests %}
             <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
-                <div class="flex-auto mr-3"><a href="#{{t.slug}}">{{ t.method_name }}</a></div>
-                <div>{{ t.outcome }}</div>
+                <div class="flex-auto mr-3">
+                    <a href="#{{t.slug}}"><strong>{{ t.method_name }}</a></strong>
+                    <span class="d-block text-small color-text-tertiary">{{ t.name }}</span>
+                </div>
+                <div class="mr-3">{{ t.duration }}</div>
+                <div class="Label {% case t.outcome %}
+                                {% when "Passed" %}
+                                    Label--success
+                                {% when "Failed" %}
+                                    Label--danger
+                                {% when "NotExecuted" %}
+                                    Label--warning
+                            {% endcase %}">
+                    {{ t.outcome }}
+                </div>
             </li>
             {% endfor %}
         </ul>

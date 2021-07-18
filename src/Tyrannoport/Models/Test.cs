@@ -1,3 +1,4 @@
+using System;
 using DotLiquid;
 using Tyrannoport.Trx.Models;
 
@@ -21,6 +22,8 @@ namespace Tyrannoport.Models
         public string MethodName => _test.TestMethod.Name;
 
         public string ClassName => _test.TestMethod.ClassName;
+
+        public TimeSpan Duration => TimeSpan.Parse(_result.Duration);
 
         public string Outcome => _result.Outcome;
     }
