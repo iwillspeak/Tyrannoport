@@ -11,6 +11,7 @@ namespace Tyrannoport.Models
         {
             Key = key;
             Tests = tests.ToArray();
+            Summary = new RunSummary(Tests.Select(t => t.Outcome));
         }
 
         public string Key { get; }
@@ -19,6 +20,6 @@ namespace Tyrannoport.Models
         
         public IReadOnlyCollection<Test> Tests { get; }
 
-        public int TestCount => Tests.Count;
+        public RunSummary Summary { get; }
     }
 }

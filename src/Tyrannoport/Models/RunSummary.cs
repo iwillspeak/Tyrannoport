@@ -6,23 +6,70 @@ namespace Tyrannoport.Models
 {
     internal class RunSummary : Drop
     {
-        private ResultSummary _summary;
-
-        public RunSummary(ResultSummary resultSummary)
+        public RunSummary(ResultSummary summary)
         {
-            _summary = resultSummary;
+            TotalTests = summary.Counters.Total; 
+            Passed = summary.Counters.Passed;
+            Failed = summary.Counters.Failed + summary.Counters.Error;
+            Skipped = summary.Counters.Total - summary.Counters.Executed;
+            Other = summary.Counters.Aborted + summary.Counters.Inconclusive + summary.Counters.NotRunnable + summary.Counters.Timeout;
         }
 
-        public int TotalTests => _summary.Counters.Total;
+        public RunSummary(IEnumerable<TestOutcome> outcomes)
+        {
+            foreach (var outcome in outcomes)
+            {
+                TotalTests++;
+                switch (outcome)
+                {
+                case TestOutcome.Passed:
+                    Passed++;
+                    break;
 
-        public int Passed => _summary.Counters.Passed;
-        public int Failed => _summary.Counters.Failed + _summary.Counters.Error;
-        public int Skipped => _summary.Counters.Total - _summary.Counters.Executed;
-        public int Other => _summary.Counters.Aborted + _summary.Counters.Inconclusive + _summary.Counters.NotRunnable + _summary.Counters.Timeout;
+                case TestOutcome.NotExecuted:
+                    Skipped++;
+                    break;
+
+                case TestOutcome.Failed:
+                    Failed++;
+                    break;
+
+                default:
+                    Other++;
+                    break;
+                }
+            }
+        }
+
+        public int TotalTests { get; }
+        public int Passed { get; }
+        public int Failed { get; }
+        public int Skipped { get; }
+        public int Other { get; }
 
         public double PassPercentage => ((double)Passed / TotalTests) * 100;
         public double FailedPercentage => ((double)Failed / TotalTests) * 100;
         public double SkippedPercentage => ((double)Skipped / TotalTests) * 100;
         public double OtherPercentage => ((double)Other / TotalTests) * 100;
+
+        public TestOutcome OverallOutcome
+        {
+            get
+            {
+                if (Failed > 0)
+                {
+                    return TestOutcome.Failed;
+                }
+                else if (Skipped > 0)
+                {
+                    return TestOutcome.NotExecuted;
+                }
+                else if (Other > 0)
+                {
+                    return TestOutcome.Other;
+                }
+                return TestOutcome.Passed;
+            }
+        }
     }
 }

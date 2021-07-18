@@ -9,6 +9,11 @@ namespace Tyrannoport.Models
         private readonly UnitTest _test;
         private readonly UnitTestResult _result;
 
+        static Test()
+        {
+            Template.RegisterSafeType(typeof(TestOutcome), o => o.ToString());
+        }
+
         public Test(UnitTest test, UnitTestResult unitTestResult)
         {
             _test = test;
@@ -41,7 +46,7 @@ namespace Tyrannoport.Models
 
         public TimeSpan Duration => TimeSpan.Parse(_result.Duration);
 
-        public string Outcome => _result.Outcome;
+        public TestOutcome Outcome => Enum.TryParse<TestOutcome>(_result.Outcome, out var o) ? o : TestOutcome.Other;
 
         public string? Output => _result.Output?.StdOut;
 

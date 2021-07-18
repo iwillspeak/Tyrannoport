@@ -56,13 +56,28 @@
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">
             <span class="Box-title flex-auto">Test Class</span>
-            <span class="Box-title">Count</span>
+            <span class="Box-title col-2 col-md-1 mr-3">Count</span>
+            <span class="Box-title col-2 col-md-1 mr-3">Pass rate</span>
+            <span class="Box-title col-2 col-md-1 text-right">Outcome</span>
         </div>
             <ul>
             {% for t in tests %}
             <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
                 <div class="flex-auto mr-3"><a href="{{t.slug}}">{{ t.key }}</a></div>
-                <div>{{ t.test_count }}</div>
+                <div class="col-2 col-md-1 mr-3">{{ t.tests.size }}</div>
+                <div class="col-2 col-md-1 mr-3">{{ t.summary.pass_percentage }}%</div>
+                <div class="col-2 col-md-1 text-right">
+                    <span class="Label {% case t.summary.overall_outcome -%}
+                                    {% when "Passed" -%}
+                                        Label--success
+                                    {% when "Failed" -%}
+                                        Label--danger
+                                    {% when "NotExecuted" -%}
+                                        Label--warning
+                                {% endcase -%}">
+                    {{ t.summary.overall_outcome }}
+                    </span>
+                </div>
             </li>
             {% endfor %}
         </ul>
