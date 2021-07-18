@@ -1,89 +1,71 @@
-<!DOCTYPE html>
-<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark_dimmed">
-  <head>
-    <title>Tyrannoport Test Report</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- TODO: This should come from baked-in css rather than referencing a CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/@primer/css@^16.0.0/dist/primer.css" />
-  </head>
-    <body>
-        <header class="Header">
-            <div class="Header-item">
-                <a href="https://github.com/iwillspeak/Tyrannoport" class="Header-link f2">Tyrannoport</a>
+{% extends "layout" %}
+{% block content %}
+<div class="clearfix">
+    <div class="col-12 col-md-6 float-left p-2">
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">
+                Summary
+                </h2>
             </div>
-            <div class="Header-item">
-                <a href="#" class="Header-link">Index</a>
-            </div>
-        </header>
-        <section class="container-xl mt-3">
-            <div class="clearfix">
-                <div class="col-12 col-md-6 float-left p-2">
-                    <div class="Box">
-                        <div class="Box-header">
-                            <h2 class="Box-title">
-                            Summary
-                            </h2>
-                        </div>
-                        <div class="Box-body">
-                            <div class="d-flex flex-justify-between">
-                                <div>
-                                    <p class="color-text-success m2">{{ summary.passed }} passed</p>
-                                    <p class="color-text-danger">{{ summary.failed}} failed</p>
-                                    <p class="color-text-warning">{{ summary.skipped }} skipped</p>
-                                    <p class="color-text-info">{{ summary.other}} other</p>
-                                </div>
-                                <div>
-                                    <p style="font-size: 2em">{{ summary.total_tests }} tests</p>
-                                    <p style="font-size: 3em">{{ summary.pass_percentage | round: 2 }}% passed</p>
-                                </div>
-                            </div>
-                            <div>
-                                <span class="Progress">
-                                    <span class="Progress-item color-bg-success-inverse" style="width: {{ summary.pass_percentage }}%;"></span>
-                                    <span class="Progress-item color-bg-danger-inverse" style="width: {{ summary.failed_percentage }}%;"></span>
-                                    {% if summary.skipped_percentage > 0 %}<span class="Progress-item color-bg-warning-inverse" style="width: {{ summary.skipped_percentage }}%;"></span>{% endif -%}
-                                    {% if summary.other_percentage > 0 %}<span class="Progress-item color-bg-info-inverse" style="width: {{ summary.other_percentage }}%;"></span>{% endif -%}
-                                </span>
-                            </div>
-                        </div>
+            <div class="Box-body">
+                <div class="d-flex flex-justify-between">
+                    <div>
+                        <p class="color-text-success m2">{{ summary.passed }} passed</p>
+                        <p class="color-text-danger">{{ summary.failed}} failed</p>
+                        <p class="color-text-warning">{{ summary.skipped }} skipped</p>
+                        <p class="color-text-info">{{ summary.other}} other</p>
+                    </div>
+                    <div>
+                        <p style="font-size: 2em">{{ summary.total_tests }} tests</p>
+                        <p style="font-size: 3em">{{ summary.pass_percentage | round: 2 }}% passed</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 float-left p-2">
-                    <div class="Box">
-                        <div class="Box-header">
-                            <h2 class="Box-title">
-                            Timings
-                            </h2>
-                        </div>
-                        <div class="Box-body">
-                            <p><strong>Creation</strong>: {{ timings.creation }}</p>
-                            <p><strong>Queuing</strong>: {{ timings.queuing }}</p>
-                            <p><strong>Start</strong>: {{ timings.start }}</p>
-                            <p><strong>Finish</strong>: {{ timings.finish }}</p>
-                            <p><strong>Duration</strong>: {{ timings.Duration }}</p>
-                        </div>
-                    </div>
+                <div>
+                    <span class="Progress">
+                        <span class="Progress-item color-bg-success-inverse" style="width: {{ summary.pass_percentage }}%;"></span>
+                        <span class="Progress-item color-bg-danger-inverse" style="width: {{ summary.failed_percentage }}%;"></span>
+                        {% if summary.skipped_percentage > 0 %}<span class="Progress-item color-bg-warning-inverse" style="width: {{ summary.skipped_percentage }}%;"></span>{% endif -%}
+                        {% if summary.other_percentage > 0 %}<span class="Progress-item color-bg-info-inverse" style="width: {{ summary.other_percentage }}%;"></span>{% endif -%}
+                    </span>
                 </div>
             </div>
-            <section class="p-2">
-                <div class="Subhead Subhead--spacious">
-                    <h2 class="Subhead-heading">Test Classes</h2>
-                </div>
-                <div class="Box">
-                    <div class="Box-header d-flex flex-items-center">
-                        <span class="Box-title flex-auto">Test Class</span>
-                        <span class="Box-title">Count</span>
-                    </div>
-                     <ul>
-                        {% for t in tests %}
-                        <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
-                            <div class="flex-auto mr-3"><a href="{{t.slug}}">{{ t.key }}</a></div>
-                            <div>{{ t.test_count }}</div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </section>
-        </section>
-    </body>
-</html>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 float-left p-2">
+        <div class="Box">
+            <div class="Box-header">
+                <h2 class="Box-title">
+                Timings
+                </h2>
+            </div>
+            <div class="Box-body">
+                <p><strong>Creation</strong>: {{ timings.creation }}</p>
+                <p><strong>Queuing</strong>: {{ timings.queuing }}</p>
+                <p><strong>Start</strong>: {{ timings.start }}</p>
+                <p><strong>Finish</strong>: {{ timings.finish }}</p>
+                <p><strong>Duration</strong>: {{ timings.Duration }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="p-2">
+    <div class="Subhead Subhead--spacious">
+        <h2 class="Subhead-heading">Test Classes</h2>
+    </div>
+    <div class="Box">
+        <div class="Box-header d-flex flex-items-center">
+            <span class="Box-title flex-auto">Test Class</span>
+            <span class="Box-title">Count</span>
+        </div>
+            <ul>
+            {% for t in tests %}
+            <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
+                <div class="flex-auto mr-3"><a href="{{t.slug}}">{{ t.key }}</a></div>
+                <div>{{ t.test_count }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}
