@@ -10,11 +10,11 @@ TODO:
  * [x] Templating of overview page from parsed report
  * [x] Templating of test results pages from parsed report
  * [x] Fixup navigation + breadcrumbs.
+ * [x] Support more target frameworks (`netcoreapp3.1` might be nice)
  * [ ] Command line argument parsing (`--output` etc.)
  * [ ] Document usage in README
  * [ ] Bake in CSS rather than referencing unpkg
  * [ ] Nuke and Cake plugins / docs
- * [ ] Support more target frameworks (`netcoreapp3.1` might be nice)
  * [ ] JS to allow switching to dark mode
  * [ ] JS to allow filtering by outcome
  * [ ] Add `tyrannoport summarise` command to generate an overview page?
