@@ -73,22 +73,32 @@ namespace Tyrannoport
             var navs = new Navs(report.Title)
             {
                 OverviewSlug = Path.GetFileName(overviewPath),
+                OutputSlug = $"{Path.GetFileNameWithoutExtension(overviewPath)}_output.html",
             };
-            
-            using (var output = outputProvider.OpenPath(overviewPath))
-            {
-                var overviewTemplate = await _templateRepository.LoadAsync("overview");
-                overviewTemplate.Render(output, new RenderParameters(CultureInfo.CurrentCulture)
-                {
-                    LocalVariables = Hash.FromAnonymousObject(new {
-                        Navs = navs,
-                        Timings = report.Timings,
-                        Summary = report.Summary,
-                        Tests = report.TestGroups,
-                    }),
-                });
-            }
 
+            await RenderToPathAsync(
+                "overview",
+                outputProvider,
+                overviewPath,
+                Hash.FromAnonymousObject(new
+                {
+                    Navs = navs,
+                    Timings = report.Timings,
+                    Summary = report.Summary,
+                    Tests = report.TestGroups,
+                }));
+            
+            await RenderToPathAsync(
+                "output",
+                outputProvider,
+                Path.Join(Path.GetDirectoryName(overviewPath), navs.OutputSlug),
+                Hash.FromAnonymousObject(new
+                {
+                    Navs = navs,
+                    Output = report.Output,
+                }));
+
+            // Can't use `RenderToPath` here because we want to cache the template
             var detailsTemplate = await _templateRepository.LoadAsync("class_details");
             foreach (var group in report.TestGroups)
             {
@@ -96,11 +106,24 @@ namespace Tyrannoport
                     Path.Join(Path.GetDirectoryName(overviewPath), group.Slug));
                 detailsTemplate.Render(output, new RenderParameters(CultureInfo.CurrentCulture)
                 {
-                    LocalVariables = Hash.FromAnonymousObject(new {
+                    LocalVariables = Hash.FromAnonymousObject(new
+                    {
                         Navs = navs,
                         Class = group.Key,
                         Tests = group.Tests,
                     }),
+                });
+            }
+        }
+
+        private async Task RenderToPathAsync(string template, IOutputStreamProvider outputProvider, string path, Hash variables)
+        {
+            using (var output = outputProvider.OpenPath(path))
+            {
+                var outputTemplate = await _templateRepository.LoadAsync(template);
+                outputTemplate.Render(output, new RenderParameters(CultureInfo.CurrentCulture)
+                {
+                    LocalVariables = variables,
                 });
             }
         }

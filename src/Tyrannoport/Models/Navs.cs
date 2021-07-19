@@ -10,6 +10,7 @@ namespace Tyrannoport
         }
 
         public string OverviewSlug { get; set; } = "";
+        public string OutputSlug { get; set; } = "";
         public string Title { get; }
     }
 }

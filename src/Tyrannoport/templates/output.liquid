@@ -1,0 +1,45 @@
+{% extends "layout" %}
+{% block content %}
+<section class="p-2">
+    {% if output.messages -%}
+        <div class="Subhead Subhead--spacious">
+            <h2 class="Subhead-heading">Messages</h2>
+        </div>
+        <div class="Box">
+            <ul>
+                {% for m in output.messages -%}
+                    <li class="Box-row Box-row--hover-gray d-flex flex-items-center">
+                        <div class="flex-auto">
+                            <code>{{ m.content }}</code>
+                            <div class="text-small color-text-tertiary">
+                                {{ m.computer }}
+                                <span class="hide-sm">{{ m.timestamp }}</span>
+                            </div>
+                        </div>
+                        <span class="Label {% case m.type -%}
+                                    {% when "Error" -%}
+                                        Label--danger
+                                    {% when "Warning" -%}
+                                        Label--warning
+                                {% endcase -%}">
+                            {{ m.type }}
+                        </span>
+                    </li>
+                {% endfor -%}
+            </ul>
+        </div>
+    {% endif -%}
+    {% if output.std_out -%}
+    <div class="Subhead Subhead--spacious">
+        <h2 class="Subhead-heading">Standard output</h2>
+    </div>
+    <pre class="p-3 mt-3 overflow-x-auto" data-color-mode="dark" data-dark-theme="dark"><code>{{ output.std_out }}</code></pre>
+    {% endif -%}
+    {% unless output.messages or output.std_out -%}
+    <div class="blankslate blankslate-spacious">
+        <h3 class="mb-1">No global output</h3>
+        <p>Global messages and standard output will appear here if collected.</p>
+    </div>
+    {% endunless -%}
+</section>
+{% endblock -%}

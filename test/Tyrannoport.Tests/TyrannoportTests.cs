@@ -47,6 +47,7 @@ namespace Tyrannoport.Tests
                 {
                     ["overview"] = Template.Parse("{{ summary.pass_percentage | round: 2 }}%"),
                     ["class_details"] = Template.Parse("{{ class }}|{{ tests.size }}"),
+                    ["output"] = Template.Parse("{{ output.messages.size }}|{{output.std_out.size}}"),
                 },
                 new [] { Path.Join("fixture_data", "SimpleExample.trx") }
             );
@@ -61,6 +62,11 @@ namespace Tyrannoport.Tests
                 {
                     Assert.Equal("SimpleExample.html", Path.GetFileName(x.Key));
                     Assert.Equal("50%", x.Value);
+                },
+                x =>
+                {
+                    Assert.Equal("SimpleExample_output.html", Path.GetFileName(x.Key));
+                    Assert.Equal("1|656", x.Value);
                 },
                 x =>
                 {

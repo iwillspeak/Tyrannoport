@@ -228,7 +228,7 @@ namespace Tyrannoport.Trx.Models
 	[ExcludeFromCodeCoverage]
 	public class RunInfos {
 		[XmlElement(ElementName="RunInfo", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
-		public RunInfo RunInfo { get; set; }
+		public List<RunInfo> RunInfo { get; set; }
 	}
 
 	[XmlRoot(ElementName="ResultSummary", Namespace="http://microsoft.com/schemas/VisualStudio/TeamTest/2010")]
