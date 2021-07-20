@@ -42,9 +42,9 @@ TODO:
  * [x] Fixup navigation + breadcrumbs.
  * [x] Support more target frameworks (`netcoreapp3.1` might be nice)
  * [x] Document usage in README
+ * [x] JS to allow switching to dark mode
  * [ ] Command line argument parsing (`--output` etc.)
- * [ ] Bake in CSS rather than referencing unpkg
  * [ ] Nuke and Cake plugins / docs
- * [ ] JS to allow switching to dark mode
  * [ ] JS to allow filtering by outcome
+ * [ ] Bake in CSS & js rather than referencing unpkg
  * [ ] Add `tyrannoport summarise` command to generate an overview page?
