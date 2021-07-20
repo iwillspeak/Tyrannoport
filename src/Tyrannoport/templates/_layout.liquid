@@ -19,12 +19,14 @@
             <div class="Header-item">
                 <a href="{{ navs.overview_slug }}" class="Header-link">Index</a>
             </div>
-            <div class="Header-item">
+            <div class="Header-item Header-item--full">
                 <a href="{{ navs.output_slug }}" class="Header-link">Global output</a>
             </div>
+            <div class="Header-item" id="dark-mode-placeholder"></div>
         </header>
         <section class="container-xl mt-3">
             {% block content %}{% endblock -%}
         </section>
+        <script>{% include "dark_mode_js" %}</script>
     </body>
 </html>
