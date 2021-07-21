@@ -26,6 +26,7 @@
         <section class="container-xl mt-3">
             {% block content %}{% endblock -%}
         </section>
-        <script>{% include "dark_mode_js" %}</script>
+        <script type="module">{% include "dark_mode_js" %}</script>
+        <script type="module">{% include "grid_filter_js" %}</script>
     </body>
 </html>

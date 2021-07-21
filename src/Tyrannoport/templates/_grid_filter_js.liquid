@@ -1,0 +1,38 @@
+const theList = document.getElementById("test-list");
+const theFilters = document.querySelectorAll(".test-list-filter");
+
+const activeFilter = [];
+
+const toggleFilter = (filter) => {
+    const filterIdx = activeFilter.indexOf(filter);
+    if (filterIdx > -1) {
+        activeFilter.splice(filterIdx, 1);
+        return false;
+    }
+    activeFilter.unshift(filter);
+    return true;
+}
+
+const applyFilters = () => {
+    for (let i = 0; i < theList.childElementCount; i++) {
+        const child = theList.children[i];
+        if (activeFilter.length > 0 && !activeFilter.includes(child.dataset.outcome)) {
+            child.classList.add("d-none");
+        } else {
+            child.classList.remove("d-none");
+        }
+    }
+}
+
+theFilters.forEach((element, idx, parents) => {
+    const filter = element.dataset.filter;
+    element.addEventListener("click", () => {
+        const selected = toggleFilter(filter);
+        if (selected) {
+            element.setAttribute("aria-checked", "true");
+        } else {
+            element.removeAttribute("aria-checked");
+        }
+        applyFilters();
+    });
+});
