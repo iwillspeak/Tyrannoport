@@ -10,12 +10,14 @@
     <div class="Box mt-3">
         <div class="Box-header d-flex flex-items-center">
             <span class="Box-title flex-auto mr-3">Test</span>
-            <span class="Box-title flex-shrink-0 col-3 col-md-2 col-xl-1 mr-3">Duration</span>
-            <span class="Box-title flex-shrink-0 col-3 col-md-2 col-xl-1 text-right">Outcome</span>
+            <span class="flex-shrink-0 col-3 col-md-2 col-xl-1 mr-3">Duration</span>
+            <span class="flex-shrink-0 col-3 col-md-2 col-xl-1 text-right filter-dropdown-placeholder" data-filter-values="Passed,Failed,NotExecuted,Other" data-filter-target="#class-test-list" data-filter-key="outcome">
+                Outcome
+            </span>
         </div>
-            <ul>
+            <ul id="class-test-list">
             {% for t in tests %}
-            <li class="Box-row Box-row--hover-gray" id="{{t.slug}}">
+            <li class="Box-row Box-row--hover-gray" id="{{t.slug}}" data-outcome="{{ t.outcome }}">
                 <details>
                     <summary class="d-flex flex-items-center">
                         <div class="flex-auto overflow-x-hidden mr-3">
