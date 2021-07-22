@@ -53,28 +53,12 @@
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">
             <span class="Box-title flex-auto">Test Class</span>
-            <span class="Box-title hide-sm hide-md col-1 flex-shrink-0 mr-3">Passed</span>
-            <span class="Box-title hide-sm hide-md col-1 flex-shrink-0 mr-3">Failed</span>
-            <span class="Box-title col-2 col-md-1 flex-shrink-0 mr-3">Pass rate</span>
-            <details class="text-right col-2 col-md-1 flex-shrink-0 dropdown details-reset details-overlay d-inline-block">
-                <summary class="Box-title p-2 d-inline" aria-haspopup="true">
+            <span class="hide-sm hide-md col-1 flex-shrink-0 mr-3">Passed</span>
+            <span class="hide-sm hide-md col-1 flex-shrink-0 mr-3">Failed</span>
+            <span class="col-2 col-md-1 flex-shrink-0 mr-3">Pass rate</span>
+            <span class="text-right col-2 col-md-1 flex-shrink-0 filter-dropdown-placeholder" data-filter-values="Passed,Failed,NotExecuted,Other" data-filter-target="#test-list" data-filter-key="outcome">
                 Outcome
-                <div class="dropdown-caret"></div>
-                </summary>
-                <div class="SelectMenu right-0">
-                    <div class="SelectMenu-modal">
-                        <div class="SelectMenu-list">
-                        {% assign outcomes = "Passed,Failed,NotExecuted,Other" | split: "," %}
-                        {% for outcome in outcomes %}
-                        <button class="SelectMenu-item test-list-filter" role="menuitemcheckbox" data-filter="{{outcome}}">
-                            <svg class="SelectMenu-icon SelectMenu-icon--check octicon octicon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.78 4.22C13.9204 4.36062 13.9993 4.55125 13.9993 4.75C13.9993 4.94875 13.9204 5.13937 13.78 5.28L6.53 12.53C6.38937 12.6704 6.19875 12.7493 6 12.7493C5.80125 12.7493 5.61062 12.6704 5.47 12.53L2.22 9.28C2.08752 9.13782 2.0154 8.94978 2.01882 8.75547C2.02225 8.56117 2.10096 8.37579 2.23838 8.23837C2.37579 8.10096 2.56118 8.02225 2.75548 8.01882C2.94978 8.01539 3.13782 8.08752 3.28 8.22L6 10.94L12.72 4.22C12.8606 4.07955 13.0512 4.00066 13.25 4.00066C13.4487 4.00066 13.6394 4.07955 13.78 4.22Z"></path></svg>
-                            {{ outcome }}
-                        </button>
-                        {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </details>
+            </span>
         </div>
             <ul id="test-list">
             {% for t in tests %}
