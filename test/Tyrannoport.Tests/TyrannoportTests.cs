@@ -42,13 +42,16 @@ namespace Tyrannoport.Tests
         public async Task TestRender()
         {
         //Given
-            var report = new Tyrannoport(
+            var templateRepo = 
                 new TestTemplateRepository
                 {
                     ["overview"] = Template.Parse("{{ summary.pass_percentage | round: 2 }}%"),
                     ["class_details"] = Template.Parse("{{ class }}|{{ tests.size }}"),
                     ["output"] = Template.Parse("{{ output.messages.size }}|{{output.std_out.size}}"),
-                },
+                };
+            templateRepo.AddAsset("test/asset.js", "const foo = 'a-string';");
+            var report = new Tyrannoport(
+                templateRepo,
                 new [] { Path.Join("fixture_data", "SimpleExample.trx") }
             );
             var testOutput = new TestOutputProvider();
@@ -72,6 +75,11 @@ namespace Tyrannoport.Tests
                 {
                     Assert.Equal("Tyrannoport.Tests.UnitTest1.html", Path.GetFileName(x.Key));
                     Assert.Equal("Tyrannoport.Tests.UnitTest1|2", x.Value);
+                },
+                x =>
+                {
+                    Assert.Equal("fixture_data/test/asset.js", x.Key);
+                    Assert.Equal("const foo = 'a-string';", x.Value);
                 });
         }
     }

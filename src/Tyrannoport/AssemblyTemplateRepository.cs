@@ -25,6 +25,24 @@ namespace Tyrannoport
             _fileSystem = new EmbeddedFileSystem(assembly, _templateBasePath);
         }
 
+        public async Task DeployAssetsAsync(IOutputStreamProvider output)
+        {
+            var assetBasePath = $"{_assembly.GetName().Name}.assets.";
+            foreach (var resource in _assembly.GetManifestResourceNames())
+            {
+                if (resource.StartsWith(assetBasePath))
+                {
+                    var assetExtension = Path.GetExtension(resource);
+                    var assetPath = resource.Substring(assetBasePath.Length, resource.Length - assetBasePath.Length - assetExtension.Length);
+                    assetPath = assetPath.Replace('.', Path.DirectorySeparatorChar);
+                    assetPath = $"{assetPath}{assetExtension}";
+                    using var resourceStream =_assembly.GetManifestResourceStream(resource)!;
+                    using var assetStream = output.OpenPath(assetPath);
+                    await resourceStream.CopyToAsync(assetStream);
+                }
+            }
+        }
+
         public async Task<Template> LoadAsync(string name)
         {
             var resource = _assembly.GetManifestResourceStream(

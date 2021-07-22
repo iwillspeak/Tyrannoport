@@ -10,7 +10,12 @@ namespace Tyrannoport.Tests
         private readonly IDictionary<string, Template> _templates =
             new Dictionary<string, Template>();
 
+        private readonly IDictionary<string, string> _assets =
+            new Dictionary<string, string>();
+
         public void Add(string key, Template value) => _templates[key] = value;
+
+        public void AddAsset(string path, string asset) => _assets[path] = asset;
 
         public Template this[string index]
         {
@@ -26,6 +31,16 @@ namespace Tyrannoport.Tests
             }
             return Task.FromException<Template>(
                 new FileNotFoundException($"Could not find file {name}", name));
+        }
+
+        public async Task DeployAssetsAsync(IOutputStreamProvider output)
+        {
+            foreach (var (path, asset) in _assets)
+            {
+                using var outputStream = output.OpenPath(path);
+                using var sw = new StreamWriter(outputStream);
+                await sw.WriteAsync(asset);
+            }
         }
     }
 }
