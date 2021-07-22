@@ -114,6 +114,10 @@ namespace Tyrannoport
                     }),
                 });
             }
+
+            var outputDirectory = Path.GetDirectoryName(overviewPath);
+            await _templateRepository.DeployAssetsAsync(
+                outputDirectory != null ? new ScopedOutputProvider(outputProvider, outputDirectory) : outputProvider);
         }
 
         private async Task RenderToPathAsync(string template, IOutputStreamProvider outputProvider, string path, Hash variables)
