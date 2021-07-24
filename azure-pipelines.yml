@@ -30,7 +30,7 @@ stages:
       inputs:
         codeCoverageTool: Cobertura
         summaryFileLocation: '**/TestResults/**/coverage.cobertura.xml'
-- stage: Deploy to Pre-Release
+- stage: DeployToPreRelease
   jobs:
   - deployment: GitHubDeploy
     displayName: Push NuGet Packages to Repo Feed
@@ -49,7 +49,7 @@ stages:
             env:
               SOURCE: https://nuget.pkg.github.com/iwillspeak/index.json
               API_KEY: $(GhApiKey)
-- stage: Deploy to Live
+- stage: DeployToLive
   condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
   jobs:
   - deployment: NuGetDeploy
