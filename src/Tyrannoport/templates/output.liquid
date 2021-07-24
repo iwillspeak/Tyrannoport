@@ -1,7 +1,7 @@
 {% extends "layout" %}
 {% block content %}
 <section class="p-2">
-    {% if output.messages -%}
+    {% if output.messages.size > 0 -%}
         <div class="Subhead Subhead--spacious">
             <h2 class="Subhead-heading">Messages</h2>
         </div>
@@ -33,9 +33,9 @@
     <div class="Subhead Subhead--spacious">
         <h2 class="Subhead-heading">Standard output</h2>
     </div>
-    <pre class="p-3 mt-3 overflow-x-auto" data-color-mode="dark" data-dark-theme="dark"><code>{{ output.std_out }}</code></pre>
+    <pre class="p-3 mt-3 overflow-x-auto" data-color-mode="dark" data-dark-theme="dark"><samp>{{ output.std_out | escape }}</samp></pre>
     {% endif -%}
-    {% unless output.messages or output.std_out -%}
+    {% unless output.messages.size > 0 or output.std_out -%}
     <div class="blankslate blankslate-spacious">
         <h3 class="mb-1">No global output</h3>
         <p>Global messages and standard output will appear here if collected.</p>
