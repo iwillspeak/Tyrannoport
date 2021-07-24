@@ -32,8 +32,25 @@ stages:
         summaryFileLocation: '**/TestResults/**/coverage.cobertura.xml'
 - stage: Deploy
   jobs:
+  - deployment: GitHubDeploy
+    displayName: Push NuGet Packages to Repo Feed
+    pool:
+      vmImage: 'Ubuntu-latest'
+    environment: 'gh-nuget'
+    continueOnError: false
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            patterns: '**/*.nupkg'
+          - script: |
+              dotnet nuget push --api-key $API_KEY --source "${SOURCE}" $(Pipeline.Workspace)/**/*.nupkg
+            env:
+              SOURCE: https://nuget.pkg.github.com/iwillspeak/index.json
+              API_KEY: $(GhApiKey)
   - deployment: NuGetDeploy
-    displayName: Push NuGet Packages
+    displayName: Push NuGet Packages to Nuget.org
     pool:
       vmImage: 'Ubuntu-latest'
     environment: 'live-nuget'
@@ -45,6 +62,7 @@ stages:
           - download: current
             patterns: '**/*.nupkg'
           - script: |
-              dotnet nuget push --api-key $API_KEY --source "https://api.nuget.org/v3/index.json" $(Pipeline.Workspace)/**/*.nupkg
+              dotnet nuget push --api-key $API_KEY --source "${SOURCE}" $(Pipeline.Workspace)/**/*.nupkg
             env:
+              SOURCE: https://api.nuget.org/v3/index.json
               API_KEY: $(NuGetOrgApiKey)
