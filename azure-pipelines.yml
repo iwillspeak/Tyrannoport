@@ -53,6 +53,7 @@ stages:
     displayName: Push NuGet Packages to Nuget.org
     pool:
       vmImage: 'Ubuntu-latest'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
     environment: 'live-nuget'
     continueOnError: true
     strategy:
