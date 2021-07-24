@@ -30,7 +30,7 @@ stages:
       inputs:
         codeCoverageTool: Cobertura
         summaryFileLocation: '**/TestResults/**/coverage.cobertura.xml'
-- stage: Deploy
+- stage: Deploy to Pre-Release
   jobs:
   - deployment: GitHubDeploy
     displayName: Push NuGet Packages to Repo Feed
@@ -49,11 +49,13 @@ stages:
             env:
               SOURCE: https://nuget.pkg.github.com/iwillspeak/index.json
               API_KEY: $(GhApiKey)
+- stage: Deploy to Live
+  condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+  jobs:
   - deployment: NuGetDeploy
     displayName: Push NuGet Packages to Nuget.org
     pool:
       vmImage: 'Ubuntu-latest'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
     environment: 'live-nuget'
     continueOnError: true
     strategy:
