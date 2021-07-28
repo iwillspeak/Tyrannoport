@@ -5,6 +5,8 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <Nullable>Enable</Nullable>
+        <Authors>Will Speak</Authors>
+        <Owners>Will Speak</Owners>
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     </PropertyGroup>
     <ItemGroup>
