@@ -41,8 +41,8 @@ Tyrannoport can be called directly from Cake build scripts. You will need to
 have both the `Tyrannoport` tool, and the `Cake.Tyrannoport` package installed:
 
 ```cake
-#tool "dotnet:?package=Tyrannoport&version=0.3.11"
-#addin "nuget:?package=Cake.Tyrannoport&version=0.3.11"
+#tool "dotnet:?package=Tyrannoport&version=0.3.14"
+#addin "nuget:?package=Cake.Tyrannoport&version=0.3.14"
 ```
 
 Then in your `build.cake` you can call Tyrannoport:
