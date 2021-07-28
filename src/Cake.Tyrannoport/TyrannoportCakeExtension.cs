@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using Cake.Core;
 using Cake.Core.Annotations;
+using Cake.Core.IO;
 
 namespace Cake.Tyrannoport
 {
@@ -10,22 +11,35 @@ namespace Cake.Tyrannoport
         /// <summary>Generate a Tyrannoport report for each TRX file in
         /// <paramref ref="trxPaths" /></summary>
         /// <param name="context">The cake context for this method</param>
-        /// <param name="trxPaths">The TRX file paths to generate reports for</param>
+        /// <param name="trxPath">The TRX file path to generate a report for</param>
         [CakeMethodAlias]
-        public static void Tyrannoport(this ICakeContext context, params string[] trxPaths)
-        {
-            var t = Task.Run(() => TyrannoportAsync(context, trxPaths));
-            t.GetAwaiter().GetResult();
+        public static void Tyrannoport(this ICakeContext context, FilePath trxPath)
+        {   
+            Tyrannoport(context, trxPath, new TyrannoportSettings());
         }
 
         /// <summary>Generate a Tyrannoport report for each TRX file in
         /// <paramref ref="trxPaths" /></summary>
         /// <param name="context">The cake context for this method</param>
-        /// <param name="trxPaths">The TRX file paths to generate reports for</param>
+        /// <param name="trxPath">The TRX file path to generate a report for</param>
+        /// <param name="settings">Tool settings for this operation</param>
         [CakeMethodAlias]
-        public static async Task TyrannoportAsync(this ICakeContext context, params string[] trxPaths)
-        {
-            await new global::Tyrannoport.Tyrannoport(trxPaths).RenderAsync();
+        public static void Tyrannoport(
+            this ICakeContext context,
+            FilePath trxPath,
+            TyrannoportSettings settings)
+        {   
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            var runner = new TyrannoportRunner(
+                context.FileSystem,
+                context.Environment,
+                context.ProcessRunner,
+                context.Tools);
+            runner.Run(trxPath, settings);
         }
     }
 }
