@@ -79,3 +79,7 @@ This is a rough roadmap:
  * [ ] Command line argument parsing (`--output` etc.)
  * [ ] Bake in CSS rather than referencing unpkg
  * [ ] Add `tyrannoport summarise` command to generate an overview page?
+
+## License
+
+Tyrannoport is [licensed under the MIT license](LICENSE.txt). 
