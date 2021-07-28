@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+    <PackageIcon>cake-contrib-medium.png</PackageIcon>
+    <PackageTags>test report;report;html;report generator;cake-addin</PackageTags>
+    <Description>🦖 For processing TRX files into something more enjoyable 🦖</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,4 +15,7 @@
     <ProjectReference Include="..\Tyrannoport\Tyrannoport.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="cake-contrib-medium.png" Pack="true" PackagePath="" />
+  </ItemGroup>
 </Project>
