@@ -1,5 +1,8 @@
 # Tyrannoport
 
+[![Build Status](https://dev.azure.com/iwillspeak/GitHub/_apis/build/status/iwillspeak.Tyrannoport?branchName=main)](https://dev.azure.com/iwillspeak/GitHub/_build/latest?definitionId=8&branchName=main)
+[![Tyrannoport on fuget.org](https://www.fuget.org/packages/Tyrannoport/badge.svg)](https://www.fuget.org/packages/Tyrannoport)
+
 🦖 For processing TRX files into something more enjoyable 🦖
 
 ![Overview page](docs/OverviewPage.png)
