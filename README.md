@@ -32,9 +32,35 @@ them.
 $ tyrannoport [report.trx]+
 ```
 
+### Cake Build
+
+Tyrannoport can be called directly from Cake build scripts. You will need to
+have both the `Tyrannoport` tool, and the `Cake.Tyrannoport` package installed:
+
+```cake
+#tool "dotnet:?package=Tyrannoport&version=0.3.11"
+#addin "nuget:?package=Cake.Tyrannoport&version=0.3.11"
+```
+
+Then in your `build.cake` you can call Tyrannoport:
+
+```c#
+Task("Report")
+    .IsDependentOn("Test")
+    .Does(() =>
+{
+    Tyrannoport(trxPath);
+});
+```
+
+For more details [see the example Cake project](https://gist.github.com/iwillspeak/85ecff08bfd587d2a98272f1dd1a2698).
+
 ## Here be Dragons
 
-TODO: 
+Tyrannoport is still under active development. The current tool should be
+useful but some features are yet to be fully implemented.
+
+This is a rough roadmap:
 
  * [x] Parse raw TRX data
  * [x] Templating of overview page from parsed report
@@ -44,7 +70,9 @@ TODO:
  * [x] Document usage in README
  * [x] JS to allow switching to dark mode
  * [x] JS to allow filtering by outcome
+ * [-] Nuke and Cake plugins / docs
+    * [x] Cake build support
+    * [ ] Nuke build support
  * [ ] Command line argument parsing (`--output` etc.)
- * [ ] Nuke and Cake plugins / docs
  * [ ] Bake in CSS rather than referencing unpkg
  * [ ] Add `tyrannoport summarise` command to generate an overview page?
