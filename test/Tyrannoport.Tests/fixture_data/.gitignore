@@ -1,3 +1,8 @@
 
 ### Fixture output
-*.html
+*
+*/
+
+### Keep Fixture Input
+!.gitignore
+!*.trx
