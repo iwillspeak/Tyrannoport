@@ -9,7 +9,18 @@ const initialiseFilter = element => {
         return;
     }
 
-    const activeFilter = [];
+    const loadActiveFilter = () => {
+        const query = new URLSearchParams(window.location.search);
+        const stored = query.get(targetSelector);
+        if (stored === null) {
+            return [];
+        }
+        return stored.split(",").filter((filter, i, _) => {
+            return filters.indexOf(filter) > -1;
+        });
+    }
+
+    const activeFilter = loadActiveFilter();
 
     const toggleFilter = (filter) => {
         const filterIdx = activeFilter.indexOf(filter);
@@ -21,6 +32,19 @@ const initialiseFilter = element => {
         return true;
     }
 
+    const getUrl = () => {
+        const query = new URLSearchParams(window.location.search);
+        if (activeFilter.length > 0) {
+            query.set(targetSelector, activeFilter.join(","));
+        } else {
+            query.delete(targetSelector);
+        }
+        if (Array.from(query.keys()).length > 0) {
+            return `${window.location.pathname}?${query}`;
+        }
+        return window.location.pathname;
+    }
+
     const applyFilters = () => {
         for (let i = 0; i < target.childElementCount; i++) {
             const child = target.children[i];
@@ -30,6 +54,11 @@ const initialiseFilter = element => {
                 child.classList.remove("d-none");
             }
         }
+    }
+
+    const saveAndApplyFilters = () => {
+        window.history.replaceState(null, '', getUrl());
+        applyFilters();
     }
 
     const currentTitle = element.innerHTML;
@@ -62,10 +91,16 @@ const initialiseFilter = element => {
             } else {
                 filterButton.removeAttribute("aria-checked");
             }
-            applyFilters();
+            saveAndApplyFilters();
         });
+        if (activeFilter.includes(filter))
+        {
+            filterButton.setAttribute("aria-checked", "true");
+        }
         selectList.appendChild(filterButton)
     });
+
+    applyFilters();
 };
 
 document
