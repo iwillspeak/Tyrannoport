@@ -16,7 +16,7 @@ const initialiseFilter = element => {
             return [];
         }
         return stored.split(",").filter((filter, i, _) => {
-            return filters.indexOf(filter) > -1;
+            return filters.includes(filter);
         });
     }
 
@@ -33,16 +33,14 @@ const initialiseFilter = element => {
     }
 
     const getUrl = () => {
-        const query = new URLSearchParams(window.location.search);
+        const url = new URL(window.location.href);
         if (activeFilter.length > 0) {
-            query.set(targetSelector, activeFilter.join(","));
+            url.searchParams.set(targetSelector, activeFilter.join(','));
         } else {
-            query.delete(targetSelector);
+            url.searchParams.delete(targetSelector);
         }
-        if (Array.from(query.keys()).length > 0) {
-            return `${window.location.pathname}?${query}`;
-        }
-        return window.location.pathname;
+
+        return `${url.pathname}${url.search}`;
     }
 
     const applyFilters = () => {
