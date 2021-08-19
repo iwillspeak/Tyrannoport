@@ -51,7 +51,7 @@ stages:
               SOURCE: https://nuget.pkg.github.com/iwillspeak/index.json
               API_KEY: $(GhApiKey)
 - stage: DeployToLive
-  condition: and(ne(variables['Build.Reason'], 'PullRequest'), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/'), eq(variables['Build.SourceBranch'], 'refs/tags/')))
+  condition: and(ne(variables['Build.Reason'], 'PullRequest'), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/'), eq(variables['Build.SourceBranch'], 'refs/heads/main')))
   jobs:
   - deployment: NuGetDeploy
     displayName: Push NuGet Packages to Nuget.org
