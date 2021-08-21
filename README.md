@@ -24,7 +24,7 @@ $ dotnet tool install --global tyrannoport
 ```
 
 The tool can then be run as either `tyrannoport`, or
-`dotnet tool run tyrannoport`. 
+`dotnet tool run tyrannoport`.
 
 ## Usage
 
@@ -41,8 +41,8 @@ Tyrannoport can be called directly from Cake build scripts. You will need to
 have both the `Tyrannoport` tool, and the `Cake.Tyrannoport` package installed:
 
 ```cake
-#tool "dotnet:?package=Tyrannoport&version=0.3.14"
-#addin "nuget:?package=Cake.Tyrannoport&version=0.3.14"
+#tool "dotnet:?package=Tyrannoport&version=0.3.21"
+#addin "nuget:?package=Cake.Tyrannoport&version=0.3.21"
 ```
 
 Then in your `build.cake` you can call Tyrannoport:
@@ -58,28 +58,25 @@ Task("Report")
 
 For more details [see the example Cake project](https://gist.github.com/iwillspeak/85ecff08bfd587d2a98272f1dd1a2698).
 
-## Here be Dragons
+### NUKE Build
 
-Tyrannoport is still under active development. The current tool should be
-useful but some features are yet to be fully implemented.
+Tyrannoport can be called from NUKE by referencing it as a custom tool:
 
-This is a rough roadmap:
+```bash
+$ nuke :add-package Tyrannoport --version 0.3.21
+```
 
- * [x] Parse raw TRX data
- * [x] Templating of overview page from parsed report
- * [x] Templating of test results pages from parsed report
- * [x] Fixup navigation + breadcrumbs.
- * [x] Support more target frameworks (`netcoreapp3.1` might be nice)
- * [x] Document usage in README
- * [x] JS to allow switching to dark mode
- * [x] JS to allow filtering by outcome
- * [-] Nuke and Cake plugins / docs
-    * [x] Cake build support
-    * [ ] Nuke build support
- * [ ] Command line argument parsing (`--output` etc.)
- * [ ] Bake in CSS rather than referencing unpkg
- * [ ] Add `tyrannoport summarise` command to generate an overview page?
+Then in your `Build.cs`:
+
+```c#
+[PackageExecutable("Tyrannoport", "Tyrannoport.dll")]
+readonly Tool Tyrannoport;
+
+// ... 
+
+Tyrannoport(trxPath);
+```
 
 ## License
 
-Tyrannoport is [licensed under the MIT license](LICENSE.txt). 
+Tyrannoport is [licensed under the MIT license](LICENSE.txt).
