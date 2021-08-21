@@ -38,7 +38,7 @@ namespace Tyrannoport
         /// </param>
         /// <param name="templateRepository">
         ///   The repository to use for loading templates.
-        /// </param> 
+        /// </param>
         public Tyrannoport(ITemplateRepository templateRepository, IEnumerable<string> paths)
         {
             _runs = paths.Any() ?
