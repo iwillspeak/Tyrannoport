@@ -53,23 +53,34 @@ namespace Tyrannoport
 
         /// <summary>Render the report to chosen output</summary>
         /// <param name="outputProvider">The output provider to render to</param>
-        public async Task RenderAsync(IOutputStreamProvider outputProvider)
+        public Task RenderAsync(IOutputStreamProvider outputProvider) =>
+            RenderAsync(new RenderOptions(outputProvider));
+
+        /// <summary>Render the report with the given options</summary>
+        /// <param name="options">Configuration options for this render.</param>
+        public async Task RenderAsync(RenderOptions options)
         {
+            if (_runs.Count > 1 && !OutputBaseIsDirectory(options))
+            {
+                throw new Exception("Output base must be a directory when rendering multiple runs");
+            }
+
             foreach (var (path, run) in _runs)
             {
                 var context = new ReportContext(run);
-                await RenderOverviewAsync(path, context, outputProvider);
+                await RenderOverviewAsync(path, context, options);
             }
         }
 
         private async Task RenderOverviewAsync(
             string path,
             ReportContext report,
-            IOutputStreamProvider outputProvider)
+            RenderOptions options)
         {
             // TODO: we should have the option to change the output location
             //       from the CLI.
-            var overviewPath = Path.ChangeExtension(path, "html");
+            var overviewPath = GetOverviewPath(path, options);
+            var outputDirectory = Path.GetDirectoryName(overviewPath);
             var navs = new Navs(report.Title)
             {
                 OverviewSlug = Path.GetFileName(overviewPath),
@@ -78,7 +89,7 @@ namespace Tyrannoport
 
             await RenderToPathAsync(
                 "overview",
-                outputProvider,
+                options.StreamProvider,
                 overviewPath,
                 Hash.FromAnonymousObject(new
                 {
@@ -87,11 +98,11 @@ namespace Tyrannoport
                     Summary = report.Summary,
                     Tests = report.TestGroups,
                 }));
-            
+
             await RenderToPathAsync(
                 "output",
-                outputProvider,
-                Path.Join(Path.GetDirectoryName(overviewPath), navs.OutputSlug),
+                options.StreamProvider,
+                Path.Join(outputDirectory, navs.OutputSlug),
                 Hash.FromAnonymousObject(new
                 {
                     Navs = navs,
@@ -102,8 +113,8 @@ namespace Tyrannoport
             var detailsTemplate = await _templateRepository.LoadAsync("class_details");
             foreach (var group in report.TestGroups)
             {
-                using var output = outputProvider.OpenPath(
-                    Path.Join(Path.GetDirectoryName(overviewPath), group.Slug));
+                using var output = options.StreamProvider.OpenPath(
+                    Path.Join(outputDirectory, group.Slug));
                 detailsTemplate.Render(output, new RenderParameters(CultureInfo.CurrentCulture)
                 {
                     LocalVariables = Hash.FromAnonymousObject(new
@@ -115,9 +126,32 @@ namespace Tyrannoport
                 });
             }
 
-            var outputDirectory = Path.GetDirectoryName(overviewPath);
             await _templateRepository.DeployAssetsAsync(
-                outputDirectory != null ? new ScopedOutputProvider(outputProvider, outputDirectory) : outputProvider);
+                outputDirectory != null ?
+                    new ScopedOutputProvider(options.StreamProvider, outputDirectory) :
+                    options.StreamProvider);
+        }
+
+        private static string GetOverviewPath(string path, RenderOptions options)
+        {
+            if (options.OutputBase == null)
+            {
+                return Path.ChangeExtension(path, "html");
+            }
+
+            if (OutputBaseIsDirectory(options))
+            {
+                return Path.Combine(
+                    options.OutputBase,
+                    Path.GetFileNameWithoutExtension(path) + ".html");
+            }
+
+            return options.OutputBase;
+        }
+
+        private static bool OutputBaseIsDirectory(RenderOptions options)
+        {
+            return Directory.Exists(options.OutputBase) || string.IsNullOrEmpty(Path.GetExtension(options.OutputBase));
         }
 
         private async Task RenderToPathAsync(string template, IOutputStreamProvider outputProvider, string path, Hash variables)
