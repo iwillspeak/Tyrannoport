@@ -35,6 +35,15 @@ them.
 $ tyrannoport [report.trx]+
 ```
 
+Rendering can take place to a separate directory by specifying `--output`:
+
+```
+$ tyrannoport --output=<some/dir> [report.trx]+
+```
+
+If you are only rendering a single report then output can be a file path to the
+summary document instead.
+
 ### Cake Build
 
 Tyrannoport can be called directly from Cake build scripts. You will need to
