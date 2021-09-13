@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "octoversion.tool": {
-      "version": "0.2.560",
+      "version": "0.2.630",
       "commands": [
         "octoversion"
       ]
