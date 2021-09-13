@@ -77,8 +77,6 @@ namespace Tyrannoport
             ReportContext report,
             RenderOptions options)
         {
-            // TODO: we should have the option to change the output location
-            //       from the CLI.
             var overviewPath = GetOverviewPath(path, options);
             var outputDirectory = Path.GetDirectoryName(overviewPath);
             var navs = new Navs(report.Title)
