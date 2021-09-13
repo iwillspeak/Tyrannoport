@@ -24,12 +24,22 @@ namespace Cake.Tyrannoport
         /// <param name="settings">Tool settings for this operation</param>
         public void Run(FilePath trxPath, TyrannoportSettings settings)
         {
-            Run(settings, GetArguments(trxPath));
+            Run(settings, GetArguments(trxPath, settings));
         }
 
-        private ProcessArgumentBuilder GetArguments(FilePath trxPath) =>
-            new ProcessArgumentBuilder()
-                .AppendQuoted(trxPath.FullPath);
+        private ProcessArgumentBuilder GetArguments(FilePath trxPath, TyrannoportSettings settings)
+        {
+            var args = new ProcessArgumentBuilder();
+
+            if (settings.OutputBase != null)
+            {
+                args = args
+                    .Append("--output")
+                    .AppendQuoted(settings.OutputBase);
+            }
+
+            return args.AppendQuoted(trxPath.FullPath);
+        }
 
         /// <summary>Returns an enumerator that yields the known tool names</summary>
         protected override IEnumerable<string> GetToolExecutableNames()
