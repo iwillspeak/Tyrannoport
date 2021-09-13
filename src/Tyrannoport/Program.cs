@@ -13,10 +13,10 @@ namespace Tyrannoport
         tyrannoport --version
         tyrannoport --help
 
-
     Options:
-        --version   Print the version and exit.
-        --help      Show this help text.
+        -o OUT, --output=<OUT>  Write the output to the given <OUT> locaiton.
+        --version               Print the version and exit.
+        --help                  Show this help text.
 ";
 
         static async Task Main(string[] args)
@@ -25,7 +25,10 @@ namespace Tyrannoport
                 .Apply(Usage, args, exit: true, version: Version.VersionString);
 
             await new Tyrannoport(options["<trx>"].AsList.Cast<object>().Select(c => c.ToString()!))
-                .RenderAsync();
+                .RenderAsync(new RenderOptions
+                {
+                    OutputBase = options["--output"]?.ToString(),
+                });
         }
     }
 }
