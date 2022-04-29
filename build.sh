@@ -8,7 +8,7 @@ fi
 
 set -euox pipefail
 
-dotnet --version --verbose
+dotnet --version
 
 ## Generate Version Information
 dotnet tool restore
