@@ -12,7 +12,7 @@ dotnet --version
 
 ## Generate Version Information
 dotnet tool restore
-export $(dotnet tool run octoversion --CurrentBranch=${BUILD_SOURCEBRANCH} --OutputFormats:0=Environment | xargs)
+export $(dotnet tool run octoversion --CurrentBranch=${BUILD_SOURCEBRANCH} --OutputFormats:0=Environment | grep -v '^\[' | xargs)
 versionFlags="/P:Version=${OCTOVERSION_NuGetVersion} /P:InformationalVersion=${OCTOVERSION_InformationalVersion}"
 
 ## Run the Build
