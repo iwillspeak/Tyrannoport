@@ -3,13 +3,13 @@
   "isRoot": true,
   "tools": {
     "octoversion.tool": {
-      "version": "0.2.630",
+      "version": "0.2.1058",
       "commands": [
         "octoversion"
       ]
     },
     "dotnet-reportgenerator-globaltool": {
-      "version": "4.8.12",
+      "version": "5.1.5",
       "commands": [
         "reportgenerator"
       ]
