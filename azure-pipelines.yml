@@ -15,8 +15,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      # Pinned to work around loading of LibGit2Sharp https://github.com/libgit2/libgit2sharp/issues/1798
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'ubuntu-latest'
     steps:
     - script: bash ./build.sh
     - publish: 'PublishOutput/'
