@@ -100,9 +100,14 @@ const initialiseFilter = element => {
     applyFilters();
 };
 
-document.addEventListener('DOMContentLoaded', (_) => {
+const initialiseAllFilters = () => {
     document
         .querySelectorAll(".filter-dropdown-placeholder")
         .forEach((element, _idx, _parents) => initialiseFilter(element));
-});
+};
 
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialiseAllFilters);
+} else {
+    initialiseAllFilters();
+}
