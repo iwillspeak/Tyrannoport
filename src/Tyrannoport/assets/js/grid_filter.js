@@ -15,7 +15,7 @@ const initialiseFilter = element => {
         if (stored === null) {
             return [];
         }
-        return stored.split(",").filter((filter, i, _) => {
+        return stored.split(",").filter((filter, _i, _) => {
             return filters.includes(filter);
         });
     }
@@ -75,7 +75,7 @@ const initialiseFilter = element => {
     </details>`;
     const selectList = element.querySelector(".SelectMenu-list");
 
-    filters.forEach((filter, idx, _) => {
+    filters.forEach((filter, _idx, _) => {
         const filterButton = document.createElement("button");
         filterButton.setAttribute("role", "menuitemcheckbox");
         filterButton.classList.add("SelectMenu-item");
@@ -91,8 +91,7 @@ const initialiseFilter = element => {
             }
             saveAndApplyFilters();
         });
-        if (activeFilter.includes(filter))
-        {
+        if (activeFilter.includes(filter)) {
             filterButton.setAttribute("aria-checked", "true");
         }
         selectList.appendChild(filterButton)
@@ -101,6 +100,9 @@ const initialiseFilter = element => {
     applyFilters();
 };
 
-document
-    .querySelectorAll(".filter-dropdown-placeholder")
-    .forEach((element, idx, parents) => initialiseFilter(element));
+document.addEventListener('DOMContentLoaded', (_) => {
+    document
+        .querySelectorAll(".filter-dropdown-placeholder")
+        .forEach((element, _idx, _parents) => initialiseFilter(element));
+});
+
