@@ -40,7 +40,7 @@ const initialiseFilter = element => {
             url.searchParams.delete(targetSelector);
         }
 
-        return `${url.pathname}${url.search}`;
+        return url.toString();
     }
 
     const applyFilters = () => {
