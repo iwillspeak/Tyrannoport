@@ -52,11 +52,14 @@
                         <p class="col-12 col-md-6 col-lg-3 pr-3"><strong>Computer</strong>: {{ t.computer_name }}</p>
                         <p class="col-12 col-md-6 col-lg-3 pr-3"><strong>Adapter</strong>: {{ t.adapter }}</p>
                     </div>
-                    <p><strong>CodeBase</strong>: {{ t.code_base }}</p>
+                    <div class="d-flex flex-items-center">
+                        <p class="flex-auto"><strong>CodeBase</strong>: {{ t.code_base }}</p>
+                        <p><a href="#{{ t.slug }}">Permalink</a></p>
+                    </div>
                     {% if t.error -%}
                     <details class="details-reset mt-2">
-                        <summary class="color-text-danger d-flex flex-items-center">
-                            <pre class="flex-auto overflow-x-auto mr-3"><samp>{{ t.error.message | escape }}</samp></pre>
+                        <summary class="d-flex flex-items-center">
+                            <pre class="color-text-danger flex-auto overflow-x-auto mr-3"><samp>{{ t.error.message | escape }}</samp></pre>
                             <span class="btn-link">Stack trace <span class="dropdown-caret"></span></span>
                         </summary>
                         <pre class="overflow-x-auto mt-1 p-3" data-color-mode="dark" data-dark-theme="dark"><samp>{{ t.error.stack_trace | escape }}</samp></pre>
