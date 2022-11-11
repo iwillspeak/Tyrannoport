@@ -11,7 +11,7 @@ namespace Tyrannoport
     /// </summary>
     internal sealed class ReportContext
     {
-        private readonly IDictionary<string, UnitTestResult> _executions;
+        private readonly ILookup<string, UnitTestResult>? _executions;
         private readonly ILookup<string, UnitTest>? _testsByClass;
 
         public ReportContext(TestRun testRun)
@@ -21,8 +21,7 @@ namespace Tyrannoport
             Title = testRun.Name ?? "Unit Tests";
             Output = new GlobalOutput(testRun.ResultSummary);
 
-            _executions = testRun.Results?.UnitTestResult?.ToDictionary(x => x.ExecutionId) ??
-                new Dictionary<string, UnitTestResult>();
+            _executions = testRun.Results?.UnitTestResult?.ToLookup(x => x.TestId);
             _testsByClass = testRun.TestDefinitions?.UnitTest?.ToLookup(x => x.TestMethod.ClassName);
         }
 
@@ -33,8 +32,9 @@ namespace Tyrannoport
         public string Title { get; }
         public GlobalOutput Output { get; }
 
-        public IEnumerable<TestGrouping> TestGroups => _testsByClass
-            ?.Select(g => new TestGrouping(g.Key, g.Select(t => new Test(t, _executions[t.Execution.Id])))) ??
-            Enumerable.Empty<TestGrouping>(); 
+        public IEnumerable<TestGrouping> TestGroups => _executions != null ? _testsByClass
+            ?.Select(g => new TestGrouping(g.Key, g.SelectMany(t => _executions[t.Id].Select(x => new Test(t, x))))) ?? 
+              Enumerable.Empty<TestGrouping>()
+            : Enumerable.Empty<TestGrouping>(); 
     }
 }
