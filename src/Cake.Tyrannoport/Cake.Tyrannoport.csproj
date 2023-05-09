@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;netstandard2.0;net6.0;net7.0</TargetFrameworks>
     <PackageIcon>cake-contrib-medium.png</PackageIcon>
     <PackageTags>test report;report;html;report generator;cake-addin</PackageTags>
     <Description>🦖 For processing TRX files into something more enjoyable 🦖</Description>
