@@ -14,9 +14,10 @@ namespace Tyrannoport
         tyrannoport --help
 
     Options:
-        -o OUT, --output=<OUT>  Write the output to the given <OUT> locaiton.
-        --version               Print the version and exit.
-        --help                  Show this help text.
+        -o OUT, --output=<OUT>                      Write the output to the given <OUT> location.
+        --exclude-skipped-from-total-pass-rate      Exclude skipped tests from the pass rate calculation.
+        --version                                   Print the version and exit.
+        --help                                      Show this help text.
 ";
 
         static async Task Main(string[] args)
@@ -28,6 +29,7 @@ namespace Tyrannoport
                 .RenderAsync(new RenderOptions
                 {
                     OutputBase = options["--output"]?.ToString(),
+                    ExcludeSkippedFromTotalPassRate = options["--exclude-skipped-from-total-pass-rate"].IsTrue,
                 });
         }
     }

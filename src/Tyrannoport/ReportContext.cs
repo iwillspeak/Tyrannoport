@@ -14,10 +14,10 @@ namespace Tyrannoport
         private readonly ILookup<string, UnitTestResult>? _executions;
         private readonly ILookup<string, UnitTest>? _testsByClass;
 
-        public ReportContext(TestRun testRun)
+        public ReportContext(TestRun testRun, bool excludeSkippedFromPassRate = false)
         {
             Timings = new ReportTimings(testRun.Times);
-            Summary = new RunSummary(testRun.ResultSummary);
+            Summary = new RunSummary(testRun.ResultSummary, excludeSkippedFromPassRate);
             Title = testRun.Name ?? "Unit Tests";
             Output = new GlobalOutput(testRun.ResultSummary);
 
