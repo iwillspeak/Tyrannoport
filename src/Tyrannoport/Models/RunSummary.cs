@@ -6,8 +6,11 @@ namespace Tyrannoport.Models
 {
     internal class RunSummary : Drop
     {
-        public RunSummary(ResultSummary summary)
+        private readonly bool _excludeSkippedFromPassRate;
+
+        public RunSummary(ResultSummary summary, bool excludeSkippedFromPassRate = false)
         {
+            _excludeSkippedFromPassRate = excludeSkippedFromPassRate;
             TotalTests = summary.Counters.Total; 
             Passed = summary.Counters.Passed;
             Failed = summary.Counters.Failed + summary.Counters.Error;
@@ -15,8 +18,9 @@ namespace Tyrannoport.Models
             Other = summary.Counters.Aborted + summary.Counters.Inconclusive + summary.Counters.NotRunnable + summary.Counters.Timeout;
         }
 
-        public RunSummary(IEnumerable<TestOutcome> outcomes)
+        public RunSummary(IEnumerable<TestOutcome> outcomes, bool excludeSkippedFromPassRate = false)
         {
+            _excludeSkippedFromPassRate = excludeSkippedFromPassRate;
             foreach (var outcome in outcomes)
             {
                 TotalTests++;
@@ -47,10 +51,12 @@ namespace Tyrannoport.Models
         public int Skipped { get; }
         public int Other { get; }
 
-        public double PassPercentage => ((double)Passed / TotalTests) * 100;
-        public double FailedPercentage => ((double)Failed / TotalTests) * 100;
-        public double SkippedPercentage => ((double)Skipped / TotalTests) * 100;
-        public double OtherPercentage => ((double)Other / TotalTests) * 100;
+        private int EffectiveTotalTests => _excludeSkippedFromPassRate ? (TotalTests - Skipped) : TotalTests;
+
+        public double PassPercentage => EffectiveTotalTests == 0 ? 0.0 : ((double)Passed / EffectiveTotalTests) * 100;
+        public double FailedPercentage => EffectiveTotalTests == 0 ? 0.0 : ((double)Failed / EffectiveTotalTests) * 100;
+        public double SkippedPercentage => TotalTests == 0 ? 0.0 : ((double)Skipped / TotalTests) * 100;
+        public double OtherPercentage => EffectiveTotalTests == 0 ? 0.0 : ((double)Other / EffectiveTotalTests) * 100;
 
         public TestOutcome OverallOutcome
         {

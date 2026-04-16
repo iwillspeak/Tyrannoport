@@ -33,5 +33,87 @@ namespace Tyrannoport.Tests
             var summary = new RunSummary(given);
             Assert.Equal(expected, summary.OverallOutcome);
         }
+
+        [Fact]
+        public void ExcludeSkippedFromPassRateCalculatesPercentageWithoutSkipped()
+        {
+        //Given
+            var outcomes = new[]
+            {
+                TestOutcome.Passed,
+                TestOutcome.Passed,
+                TestOutcome.NotExecuted,
+                TestOutcome.NotExecuted,
+            };
+
+        //When
+            var summary = new RunSummary(outcomes, excludeSkippedFromPassRate: true);
+
+        //Then
+            Assert.Equal(4, summary.TotalTests);
+            Assert.Equal(2, summary.Passed);
+            Assert.Equal(2, summary.Skipped);
+            Assert.Equal(100.0, summary.PassPercentage, 2);
+        }
+
+        [Fact]
+        public void DefaultPassRateIncludesSkipped()
+        {
+        //Given
+            var outcomes = new[]
+            {
+                TestOutcome.Passed,
+                TestOutcome.Passed,
+                TestOutcome.NotExecuted,
+                TestOutcome.NotExecuted,
+            };
+
+        //When
+            var summary = new RunSummary(outcomes);
+
+        //Then
+            Assert.Equal(4, summary.TotalTests);
+            Assert.Equal(2, summary.Passed);
+            Assert.Equal(2, summary.Skipped);
+            Assert.Equal(50.0, summary.PassPercentage, 2);
+        }
+
+        [Fact]
+        public void ExcludeSkippedSkippedPercentageStillUsesTotalTests()
+        {
+        //Given
+            var outcomes = new[]
+            {
+                TestOutcome.Passed,
+                TestOutcome.Passed,
+                TestOutcome.NotExecuted,
+                TestOutcome.NotExecuted,
+            };
+
+        //When
+            var summary = new RunSummary(outcomes, excludeSkippedFromPassRate: true);
+
+        //Then
+            Assert.Equal(50.0, summary.SkippedPercentage, 2);
+        }
+
+        [Fact]
+        public void ExcludeSkippedAllSkippedReturnsZeroPercentages()
+        {
+        //Given
+            var outcomes = new[]
+            {
+                TestOutcome.NotExecuted,
+                TestOutcome.NotExecuted,
+            };
+
+        //When
+            var summary = new RunSummary(outcomes, excludeSkippedFromPassRate: true);
+
+        //Then
+            Assert.Equal(0.0, summary.PassPercentage, 2);
+            Assert.Equal(0.0, summary.FailedPercentage, 2);
+            Assert.Equal(0.0, summary.OtherPercentage, 2);
+        }
     }
 }

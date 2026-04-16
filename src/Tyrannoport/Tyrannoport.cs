@@ -67,7 +67,7 @@ namespace Tyrannoport
 
             foreach (var (path, run) in _runs)
             {
-                var context = new ReportContext(run);
+                var context = new ReportContext(run, options.ExcludeSkippedFromTotalPassRate);
                 await RenderOverviewAsync(path, context, options);
             }
         }

@@ -26,5 +26,11 @@ namespace Tyrannoport
 
         /// <summary>Gets or sets the base path for this render.</summary>
         public string? OutputBase { get; set; }
+
+        /// <summary>
+        ///  Gets or sets a value indicating whether skipped tests should be
+        ///  excluded from the total pass rate calculation.
+        /// </summary>
+        public bool ExcludeSkippedFromTotalPassRate { get; set; }
     }
 }

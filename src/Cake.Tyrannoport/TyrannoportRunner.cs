@@ -38,6 +38,11 @@ namespace Cake.Tyrannoport
                     .AppendQuoted(settings.OutputBase);
             }
 
+            if (settings.ExcludeSkippedFromTotalPassRate)
+            {
+                args = args.Append("--exclude-skipped-from-total-pass-rate");
+            }
+
             return args.AppendQuoted(trxPath.FullPath);
         }
 
