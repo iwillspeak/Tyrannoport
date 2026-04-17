@@ -23,9 +23,9 @@ namespace Tyrannoport
         static async Task Main(string[] args)
         {
             var options = new Docopt()
-                .Apply(Usage, args, exit: true, version: Version.VersionString);
+                .Apply(Usage, args, exit: true, version: Version.VersionString)!;
 
-            await new Tyrannoport(options["<trx>"].AsList.Cast<object>().Select(c => c.ToString()!))
+            await new Tyrannoport(options["<trx>"]!.AsList!.Cast<object>().Select(c => c.ToString()!))
                 .RenderAsync(new RenderOptions
                 {
                     OutputBase = options["--output"]?.ToString(),
