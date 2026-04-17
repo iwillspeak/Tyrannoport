@@ -16,6 +16,6 @@
 
   <ItemGroup>
     <PackageReference Include="docopt.net" Version="0.6.1.11" />
-    <PackageReference Include="DotLiquid" Version="2.1.488" />
+    <PackageReference Include="DotLiquid" Version="2.3.197" />
   </ItemGroup>
 </Project>
