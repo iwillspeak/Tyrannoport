@@ -23,11 +23,9 @@ namespace Tyrannoport
         static async Task Main(string[] args)
         {
             var options = new Docopt()
-                .Apply(Usage, args, exit: true, version: Version.VersionString)
-                ?? throw new DocoptInputErrorException("Failed to parse command line arguments. Please check the usage and try again.");
-            var trxOption = options["<trx>"] ?? throw new DocoptInputErrorException("Missing required argument: <trx>. Please specify at least one TRX file path.");
+                .Apply(Usage, args, exit: true, version: Version.VersionString)!;
 
-            await new Tyrannoport(trxOption.AsList.Cast<object>().Select(c => c.ToString()!))
+            await new Tyrannoport(options["<trx>"]!.AsList!.Cast<object>().Select(c => c.ToString()!))
                 .RenderAsync(new RenderOptions
                 {
                     OutputBase = options["--output"]?.ToString(),
