@@ -24,8 +24,8 @@ namespace Tyrannoport
         {
             var options = new Docopt()
                 .Apply(Usage, args, exit: true, version: Version.VersionString)
-                ?? throw new DocoptInputErrorException("Unable to parse command line arguments");
-            var trxOption = options["<trx>"] ?? throw new DocoptInputErrorException("<trx> is required");
+                ?? throw new DocoptInputErrorException("Failed to parse command line arguments. Please check the usage and try again.");
+            var trxOption = options["<trx>"] ?? throw new DocoptInputErrorException("Missing required argument: <trx>. Please specify at least one TRX file path.");
 
             await new Tyrannoport(trxOption.AsList.Cast<object>().Select(c => c.ToString()!))
                 .RenderAsync(new RenderOptions
